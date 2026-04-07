@@ -1,0 +1,517 @@
+/* ═══════════════════════════════════════════════════════════════
+   INKLAYER — MAIN.JS
+   Complete JavaScript Architecture
+   ═══════════════════════════════════════════════════════════════ */
+
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Lenis from 'lenis';
+
+gsap.registerPlugin(ScrollTrigger);
+
+/* ───────────────────────────────────────────────────────────────
+   LENIS SMOOTH SCROLL
+   ─────────────────────────────────────────────────────────────── */
+const lenis = new Lenis({
+  lerp: 0.1,
+  wheelMultiplier: 1,
+  infinite: false,
+  gestureOrientation: 'vertical',
+  normalizeWheel: true,
+  smoothWheel: true,
+});
+
+lenis.on('scroll', ScrollTrigger.update);
+
+gsap.ticker.add((time) => {
+  lenis.raf(time * 1000);
+});
+
+gsap.ticker.lagSmoothing(0);
+
+/* ───────────────────────────────────────────────────────────────
+   HERO ANIMATIONS
+   ─────────────────────────────────────────────────────────────── */
+function initHeroAnimations() {
+  const bgVideo = document.querySelector('.bg-video');
+  const heroTitle = document.querySelector('.hero-title');
+  const heroSubtitle = document.querySelector('.hero-subtitle');
+  const heroCta = document.querySelector('.hero-cta-group');
+  const heroDetails = document.querySelector('.hero-details');
+  const nav = document.querySelector('.nav');
+
+  if (!bgVideo) return;
+
+  // Entrance Timeline
+  const heroTl = gsap.timeline({ defaults: { ease: 'power2.out' } });
+
+  gsap.set(bgVideo, { scale: 1.2, opacity: 0 });
+  gsap.set(heroTitle, { y: 60, opacity: 0 });
+  gsap.set(heroSubtitle, { y: 40, opacity: 0 });
+  gsap.set(heroCta, { y: 30, opacity: 0 });
+  gsap.set(nav, { y: -100, opacity: 0 });
+
+  heroTl
+    .to(bgVideo, { scale: 1.05, opacity: 1, duration: 2.5 })
+    .to(heroTitle, { y: 0, opacity: 1, duration: 1.2 }, '-=1.5')
+    .to(heroSubtitle, { y: 0, opacity: 1, duration: 1 }, '-=0.8')
+    .to(heroCta, { y: 0, opacity: 1, duration: 1 }, '-=0.6')
+    .to(nav, { y: 0, opacity: 1, duration: 1, ease: 'power4.out' }, '-=0.8');
+
+  // Scroll-driven parallax
+  gsap.to(bgVideo, {
+    scale: 1,
+    scrollTrigger: {
+      trigger: '.hero',
+      start: 'top top',
+      end: 'bottom top',
+      scrub: true,
+    },
+  });
+
+  gsap.to(heroDetails, {
+    y: -150,
+    scrollTrigger: {
+      trigger: '.hero',
+      start: 'top top',
+      end: 'bottom top',
+      scrub: true,
+    },
+  });
+
+
+}
+
+/* ───────────────────────────────────────────────────────────────
+   NAVIGATION SCROLL BEHAVIOR
+   ─────────────────────────────────────────────────────────────── */
+function initNavScroll() {
+  const nav = document.querySelector('.nav');
+  const hero = document.querySelector('.hero');
+  if (!nav) return;
+
+  let lastScrollY = 0;
+  let ticking = false;
+
+  const handleScroll = () => {
+    const currentScrollY = window.scrollY || document.documentElement.scrollTop;
+    const heroHeight = hero ? hero.offsetHeight : window.innerHeight;
+
+    // Transparent → solid threshold at hero bottom
+    if (currentScrollY >= heroHeight - nav.offsetHeight) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+
+    // Hide on scroll down, show on scroll up
+    if (currentScrollY > lastScrollY && currentScrollY > 300) {
+      nav.classList.add('hidden');
+    } else {
+      nav.classList.remove('hidden');
+    }
+
+    lastScrollY = currentScrollY;
+    ticking = false;
+  };
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(handleScroll);
+      ticking = true;
+    }
+  }, { passive: true });
+
+  handleScroll(); // run once on load
+}
+
+/* ───────────────────────────────────────────────────────────────
+   ACTIVE NAV LINK HIGHLIGHT
+   ─────────────────────────────────────────────────────────────── */
+function initActiveNavLinks() {
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+  if (!navLinks.length) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { threshold: 0.4 });
+
+  sections.forEach(s => observer.observe(s));
+}
+
+/* ───────────────────────────────────────────────────────────────
+   MOBILE DRAWER
+   ─────────────────────────────────────────────────────────────── */
+function initMobileDrawer() {
+  const hamburger = document.getElementById('nav-hamburger');
+  const drawer    = document.getElementById('nav-drawer');
+  const overlay   = document.getElementById('nav-drawer-overlay');
+  const closeBtn  = document.getElementById('nav-drawer-close');
+  const drawerLinks = document.querySelectorAll('.nav-drawer-link, .nav-drawer-cta');
+
+  if (!hamburger || !drawer) return;
+
+  const openDrawer = () => {
+    drawer.classList.add('open');
+    overlay.classList.add('open');
+    hamburger.classList.add('open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    drawer.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeDrawer = () => {
+    drawer.classList.remove('open');
+    overlay.classList.remove('open');
+    hamburger.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    drawer.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  };
+
+  hamburger.addEventListener('click', openDrawer);
+  closeBtn.addEventListener('click', closeDrawer);
+  overlay.addEventListener('click', closeDrawer);
+  drawerLinks.forEach(link => link.addEventListener('click', closeDrawer));
+}
+
+
+
+/* ───────────────────────────────────────────────────────────────
+   COLLECTIONS ANIMATIONS
+   ─────────────────────────────────────────────────────────────── */
+function initCollections() {
+  const collectionsTitle = document.querySelector('.collections-title');
+  const collectionsSubtext = document.querySelector('.collections-subtext');
+  const cards = document.querySelectorAll('.collection-card:not(.hidden-card)');
+  const viewMoreBtn = document.getElementById('view-more-btn');
+  const hiddenCards = document.querySelectorAll('.hidden-card');
+
+  if (collectionsTitle) {
+    gsap.from(collectionsTitle, {
+      y: 40,
+      opacity: 0,
+      duration: 1,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: '.collections',
+        start: 'top 70%',
+        toggleActions: 'play none none reverse',
+      },
+    });
+
+    gsap.from(collectionsSubtext, {
+      y: 20,
+      opacity: 0,
+      duration: 1,
+      delay: 0.2,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: '.collections',
+        start: 'top 70%',
+        toggleActions: 'play none none reverse',
+      },
+    });
+
+    if (cards.length > 0) {
+      gsap.from(cards, {
+        y: 60,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.15,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: '.collections-grid',
+          start: 'top 75%',
+          toggleActions: 'play none none reverse',
+        },
+      });
+    }
+  }
+
+  if (viewMoreBtn) {
+    viewMoreBtn.addEventListener('click', () => {
+      // Show hidden cards
+      hiddenCards.forEach(card => {
+        card.style.display = 'block';
+        gsap.fromTo(card, 
+          { opacity: 0, y: 30 }, 
+          { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }
+        );
+      });
+      // Hide the view more button
+      viewMoreBtn.style.display = 'none';
+      ScrollTrigger.refresh();
+    });
+  }
+}
+
+/* ───────────────────────────────────────────────────────────────
+   REELS CAROUSEL ANIMATIONS
+   ─────────────────────────────────────────────────────────────── */
+function initReelsCarousel() {
+  const cards = document.querySelectorAll('.reel-card');
+  const nextBtn = document.querySelector('.next-btn');
+  const prevBtn = document.querySelector('.prev-btn');
+  const carousel = document.querySelector('.reels-carousel');
+  
+  if (!cards.length) return;
+
+  let currentIndex = 0;
+  let isMobile = window.innerWidth <= 768;
+  let isDropsInView = false;
+  const getOffset = () => window.innerWidth <= 768 ? 100 : 350;
+
+  function updateCarousel(animDuration = 0.6) {
+    const offset = getOffset();
+
+    cards.forEach((card, i) => {
+      // Pause all videos by default
+      const video = card.querySelector('.reel-video');
+      video.pause();
+      card.classList.remove('is-center');
+      
+      let xPos = 0;
+      let scale = 0.85;
+      let opacity = 0;
+      let zIndex = 1;
+
+      if (i === currentIndex) {
+        xPos = 0;
+        scale = window.innerWidth <= 768 ? 1.05 : 1.15;
+        opacity = 1;
+        zIndex = 5;
+        card.classList.add('is-center');
+        
+        // Handle Video Play
+        video.muted = card.dataset.muted === "true" ? true : false;
+        updateMuteUI(card, video.muted);
+        if (isDropsInView) {
+          video.play().catch((err) => {
+            // If browser blocks unmuted autoplay, fallback to muted so it still plays
+            if (!video.muted && err.name === 'NotAllowedError') {
+              video.muted = true;
+              card.dataset.muted = "true";
+              updateMuteUI(card, true);
+              video.play().catch(() => {});
+            }
+          });
+        }
+
+      } else if (i === currentIndex - 1 || (currentIndex === 0 && i === cards.length - 1)) {
+        // Left
+        xPos = -offset;
+        scale = 0.85;
+        opacity = 0.8;
+        zIndex = 3;
+      } else if (i === currentIndex + 1 || (currentIndex === cards.length - 1 && i === 0)) {
+        // Right
+        xPos = offset;
+        scale = 0.85;
+        opacity = 0.8;
+        zIndex = 3;
+      } else {
+        // Hidden
+        // Determine if it should hide on left or right contextually
+        let relativeDistance = i - currentIndex;
+        if (relativeDistance > cards.length / 2) relativeDistance -= cards.length;
+        if (relativeDistance < -cards.length / 2) relativeDistance += cards.length;
+
+        xPos = relativeDistance < 0 ? -offset * 2 : offset * 2;
+        scale = 0.6;
+        opacity = 0;
+        zIndex = 1;
+      }
+
+      gsap.to(card, {
+        x: xPos,
+        scale: scale,
+        opacity: opacity,
+        zIndex: zIndex,
+        duration: animDuration,
+        ease: 'power3.out'
+      });
+    });
+  }
+
+  function nextReel() {
+    currentIndex = (currentIndex + 1) % cards.length;
+    updateCarousel();
+  }
+
+  function prevReel() {
+    currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+    updateCarousel();
+  }
+
+  // AutoPlay Video Logic
+  cards.forEach((card, idx) => {
+    const video = card.querySelector('.reel-video');
+    card.dataset.muted = "false";
+    
+    // When video ends
+    video.addEventListener('ended', () => {
+      // Always slide to next when video finishes
+      if (card.classList.contains('is-center')) {
+        nextReel();
+      }
+    });
+
+    // Mute/Unmute toggle
+    const muteBtn = card.querySelector('.mute-btn');
+    if (muteBtn) {
+      muteBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        video.muted = !video.muted;
+        card.dataset.muted = video.muted ? "true" : "false";
+        updateMuteUI(card, video.muted);
+      });
+    }
+
+    // Click on side reels to navigate, center reel to open Instagram
+    card.addEventListener('click', (e) => {
+      if (!card.classList.contains('is-center') && !e.target.closest('.mute-btn')) {
+        let isRight = false;
+        if (idx === currentIndex + 1 || (currentIndex === cards.length - 1 && idx === 0)) isRight = true;
+        
+        if (isRight) nextReel();
+        else prevReel();
+      } else if (card.classList.contains('is-center') && !e.target.closest('.mute-btn')) {
+        const url = card.dataset.url || 'https://instagram.com/inklayer';
+        window.open(url, '_blank');
+      }
+    });
+  });
+
+  function updateMuteUI(card, isMuted) {
+    const onIcon = card.querySelector('.mute-on');
+    const offIcon = card.querySelector('.mute-off');
+    if (isMuted) {
+      onIcon.style.display = 'block';
+      offIcon.style.display = 'none';
+    } else {
+      onIcon.style.display = 'none';
+      offIcon.style.display = 'block';
+    }
+  }
+
+  // Controls
+  if (nextBtn) nextBtn.addEventListener('click', nextReel);
+  if (prevBtn) prevBtn.addEventListener('click', prevReel);
+
+  // Swipe logic
+  let startX = 0;
+  if (carousel) {
+    carousel.addEventListener('touchstart', e => {
+      startX = e.touches[0].clientX;
+    }, {passive: true});
+
+    carousel.addEventListener('touchend', e => {
+      const endX = e.changedTouches[0].clientX;
+      if (startX - endX > 50) nextReel(); // Swipe left -> slide right
+      if (endX - startX > 50) prevReel(); // Swipe right -> slide left
+    });
+  }
+
+  // Intersection Observer to stop playing when not in view
+  const dropsSection = document.getElementById('drops');
+  if (dropsSection) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        isDropsInView = entry.isIntersecting;
+        if (!isDropsInView) {
+          // Pause all videos
+          cards.forEach(c => c.querySelector('.reel-video').pause());
+        } else {
+          // Play the center video
+          const centerCard = Array.from(cards).find(c => c.classList.contains('is-center'));
+          if (centerCard) {
+            const video = centerCard.querySelector('.reel-video');
+            video.play().catch((err) => {
+              if (!video.muted && err.name === 'NotAllowedError') {
+                video.muted = true;
+                centerCard.dataset.muted = "true";
+                updateMuteUI(centerCard, true);
+                video.play().catch(() => {});
+              }
+            });
+          }
+        }
+      });
+    }, { threshold: 0.1 });
+    observer.observe(dropsSection);
+  }
+
+  // Initialize
+  updateCarousel(0);
+}
+
+/* ───────────────────────────────────────────────────────────────
+   ABOUT INKLAYER ANIMATIONS
+   ─────────────────────────────────────────────────────────────── */
+function initAboutAnimations() {
+  const aboutSection = document.querySelector('.about-inklayer');
+  const aboutBg = document.querySelector('.about-bg-img');
+  const aboutTextBlock = document.querySelector('.about-text-block');
+
+  if (!aboutSection) return;
+
+  // Background slightly zooms (parallax feel)
+  if (aboutBg) {
+    gsap.fromTo(aboutBg, 
+      { scale: 1 },
+      {
+        scale: 1.08,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: aboutSection,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: true,
+        }
+      }
+    );
+  }
+
+  // Fade-in + slight slide from left
+  if (aboutTextBlock) {
+    gsap.fromTo(aboutTextBlock, 
+      { x: -40, opacity: 0 },
+      {
+        x: 0,
+        opacity: 1,
+        duration: 1.2,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: aboutSection,
+          start: 'top 70%',
+          toggleActions: 'play none none reverse',
+        }
+      }
+    );
+  }
+}
+
+/* ───────────────────────────────────────────────────────────────
+   INITIALIZE EVERYTHING
+   ─────────────────────────────────────────────────────────────── */
+document.addEventListener('DOMContentLoaded', () => {
+  initHeroAnimations();
+  initNavScroll();
+  initActiveNavLinks();
+  initMobileDrawer();
+  initCollections();
+  initReelsCarousel();
+  initAboutAnimations();
+});
+
+window.addEventListener('load', () => {
+  ScrollTrigger.refresh();
+});

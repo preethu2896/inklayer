@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en" class="lenis">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Inklayer — Every layer tells a story. Premium streetwear hoodies from Mangaluru, India. Core Drop collection featuring heavyweight oversized hoodies built for the streets." />
+  <title>Inklayer — Every Layer Tells a Story</title>
+  <link rel="icon" type="image/x-icon" href="/assets/photo/logo.webp" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap"
+    rel="stylesheet" />
+
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       NAVIGATION
+  ═══════════════════════════════════════════════════════════════ -->
+  <nav class="nav" id="main-nav">
+
+    <!-- LEFT: Logo -->
+    <div class="nav-left">
+      <a href="#hero" class="nav-brand" id="nav-logo-link">
+        <img class="nav-logo-img" src="/assets/photo/logo1.png" alt="Inklayer Logo" />
+        <span class="nav-brand-name">Inklayer</span>
+      </a>
+    </div>
+
+    <!-- CENTER: Links (desktop) -->
+    <div class="nav-center-links" id="nav-center-links">
+      <a href="#collections" class="nav-link">Collections</a>
+      <a href="#drops"       class="nav-link">Drops</a>
+      <a href="#about"       class="nav-link">About</a>
+      <a href="#bulk-orders" class="nav-link">Bulk Orders</a>
+      <a href="#join-drop"   class="nav-link">Community</a>
+    </div>
+
+    <!-- RIGHT: CTA + Hamburger -->
+    <div class="nav-right">
+      <button class="nav-cta open-reserve-modal" id="nav-shop-btn">Shop Now</button>
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <!-- MOBILE DRAWER -->
+    <div class="nav-drawer" id="nav-drawer" aria-hidden="true">
+      <button class="nav-drawer-close" id="nav-drawer-close" aria-label="Close menu">✕</button>
+      <a href="#collections" class="nav-drawer-link">Collections</a>
+      <a href="#drops"       class="nav-drawer-link">Drops</a>
+      <a href="#about"       class="nav-drawer-link">About</a>
+      <a href="#bulk-orders" class="nav-drawer-link">Bulk Orders</a>
+      <a href="#join-drop"   class="nav-drawer-link">Community</a>
+      <button class="nav-cta nav-drawer-cta open-reserve-modal">Shop Now</button>
+    </div>
+    <!-- Drawer overlay -->
+    <div class="nav-drawer-overlay" id="nav-drawer-overlay"></div>
+
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       HERO SECTION
+  ═══════════════════════════════════════════════════════════════ -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <video class="bg-video" autoplay loop muted playsinline>
+        <source src="/hero-video.mp4" type="video/mp4" />
+      </video>
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-details">
+        <h1 class="hero-title">Not just clothing<br><span class="accent">It’s your identity</span></h1>
+        <p class="hero-subtitle">Premium oversized streetwear crafted for bold expression.</p>
+        <div class="hero-cta-group">
+          <a class="primary-btn" href="https://www.instagram.com/inklayer.shop" target="_blank" rel="noopener"
+            id="hero-cta">Shop Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       COLLECTIONS SECTION
+  ═══════════════════════════════════════════════════════════════ -->
+  <section class="collections" id="collections">
+    <div class="collections-header">
+      <h2 class="collections-title">Collections</h2>
+      <p class="collections-subtext">Explore the latest layers from Inklayer</p>
+    </div>
+    <div class="collections-grid">
+      <!-- Collection 1 -->
+      <a href="#" class="collection-card">
+        <div class="card-img-wrapper">
+          <img src="/assets/photo/bg1.png" alt="Inferno Drop" />
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">Inferno Drop</h3>
+          <p class="card-desc">Bold flame-driven graphics built for statement fits</p>
+          <span class="card-cta">Shop Inferno</span>
+        </div>
+      </a>
+      <!-- Collection 2 -->
+      <a href="#" class="collection-card">
+        <div class="card-img-wrapper">
+          <img src="/assets/photo/ethos-bg.png" alt="Core Minimal" />
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">Core Minimal</h3>
+          <p class="card-desc">Clean monochrome essentials for everyday wear</p>
+          <span class="card-cta">Shop Minimal</span>
+        </div>
+      </a>
+      <!-- Collection 3 -->
+      <a href="#" class="collection-card">
+        <div class="card-img-wrapper">
+          <img src="/assets/photo/ethos-bg-rs.png" alt="Core Minimal" />
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">Acid Drop</h3>
+          <p class="card-desc">Unique acid-washed tonal variation</p>
+          <span class="card-cta">Shop Acid</span>
+        </div>
+      </a>
+      <!-- Collection 4 (Hidden initially) -->
+      <a href="#" class="collection-card hidden-card">
+        <div class="card-img-wrapper">
+          <img src="/assets/photo/z1.png" alt="Layered Fits" />
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">Layered Series</h3>
+          <p class="card-desc">Heavyweight silhouettes made for winter layering.</p>
+          <span class="card-cta">Shop Layers</span>
+        </div>
+      </a>
+      <!-- Collection 5 (Hidden initially) -->
+      <a href="#" class="collection-card hidden-card">
+        <div class="card-img-wrapper">
+          <img src="/assets/photo/q1.png" alt="Graphics" />
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">Statement Tees</h3>
+          <p class="card-desc">Oversized fit. Bold graphic language.</p>
+          <span class="card-cta">Shop Statement</span>
+        </div>
+      </a>
+      <!-- Collection 6 (Hidden initially) -->
+      <a href="#" class="collection-card hidden-card">
+        <div class="card-img-wrapper">
+          <img src="/assets/photo/wholesale-bg.png" alt="Essentials" />
+          <div class="card-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">Street Essentials</h3>
+          <p class="card-desc">The foundation of the modern streetwear wardrobe.</p>
+          <span class="card-cta">Shop Essentials</span>
+        </div>
+      </a>
+    </div>
+    <div class="collections-footer">
+      <button class="secondary-btn" id="view-more-btn">View More</button>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       BULK ORDERS SECTION
+  ═══════════════════════════════════════════════════════════════ -->
+  <section class="bulk-orders" id="bulk-orders">
+    <div class="bulk-orders-inner">
+      <div class="bulk-orders-header">
+        <span class="bulk-orders-eyebrow">WHOLESALE &amp; PARTNERSHIPS</span>
+        <h2 class="bulk-orders-title">Bulk Orders</h2>
+        <p class="bulk-orders-subtext">Partner with Inklayer for premium streetwear</p>
+        <p class="bulk-orders-note">Low MOQ. Fast-moving designs.</p>
+      </div>
+
+      <form class="bulk-orders-form" id="bulk-orders-form" novalidate>
+        <div class="bulk-form-row">
+          <div class="bulk-form-group">
+            <label for="bulk-name">Full Name</label>
+            <input type="text" id="bulk-name" name="fullName" placeholder="Your full name" autocomplete="name" required />
+          </div>
+          <div class="bulk-form-group">
+            <label for="bulk-business">Store / Business Name</label>
+            <input type="text" id="bulk-business" name="businessName" placeholder="Your store or brand" required />
+          </div>
+        </div>
+
+        <div class="bulk-form-row">
+          <div class="bulk-form-group">
+            <label for="bulk-email">Email</label>
+            <input type="email" id="bulk-email" name="email" placeholder="you@example.com" autocomplete="email" required />
+          </div>
+          <div class="bulk-form-group">
+            <label for="bulk-phone">Phone Number</label>
+            <input type="tel" id="bulk-phone" name="phone" placeholder="+91 00000 00000" autocomplete="tel" />
+          </div>
+        </div>
+
+        <div class="bulk-form-row">
+          <div class="bulk-form-group">
+            <label for="bulk-quantity">Quantity Required</label>
+            <input type="number" id="bulk-quantity" name="quantity" placeholder="e.g. 50" min="1" required />
+          </div>
+        </div>
+
+        <div class="bulk-form-group bulk-form-group--full">
+          <label for="bulk-message">Message <span class="optional-tag">(Optional)</span></label>
+          <textarea id="bulk-message" name="message" rows="4" placeholder="Tell us about your order, customisation needs, etc."></textarea>
+        </div>
+
+        <button type="submit" class="bulk-submit-btn" id="bulk-submit-btn">Submit Request</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       DROPS / REELS CAROUSEL SECTION
+  ═══════════════════════════════════════════════════════════════ -->
+  <section class="drops" id="drops">
+    <div class="drops-header">
+      <h2 class="drops-title">OUR DROPS</h2>
+    </div>
+
+    <div class="reels-carousel">
+      <!-- Reel 1 -->
+      <div class="reel-card is-center"
+        data-url="https://www.instagram.com/reel/DSRWgw-k6I1/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==">
+        <video class="reel-video" src="/videos/reel1.mp4" poster="/assets/photo/Image-754.jpg" playsinline
+          preload="auto"></video>
+        <div class="reel-overlay"></div>
+        <button class="mute-btn">
+          <svg class="mute-icon mute-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
+            <line x1="23" y1="9" x2="17" y2="15"></line>
+            <line x1="17" y1="9" x2="23" y2="15"></line>
+          </svg>
+          <svg class="mute-icon mute-off" style="display:none;" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2">
+            <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          </svg>
+        </button>
+      </div>
+      <!-- Reel 2 -->
+      <div class="reel-card"
+        data-url="https://www.instagram.com/reel/DC670uTzTTR/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==">
+        <video class="reel-video" src="/videos/reel2.mp4" poster="/assets/photo/Image-383.jpg" playsinline
+          preload="auto"></video>
+        <div class="reel-overlay"></div>
+        <button class="mute-btn">
+          <svg class="mute-icon mute-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
+            <line x1="23" y1="9" x2="17" y2="15"></line>
+            <line x1="17" y1="9" x2="23" y2="15"></line>
+          </svg>
+          <svg class="mute-icon mute-off" style="display:none;" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2">
+            <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          </svg>
+        </button>
+      </div>
+      <!-- Reel 3 -->
+      <div class="reel-card"
+        data-url="https://www.instagram.com/reel/DG3Igwpz4v3/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==">
+        <video class="reel-video" src="/videos/reel3.mp4" poster="/assets/photo/Image-488.jpg" playsinline
+          preload="auto"></video>
+        <div class="reel-overlay"></div>
+        <button class="mute-btn">
+          <svg class="mute-icon mute-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
+            <line x1="23" y1="9" x2="17" y2="15"></line>
+            <line x1="17" y1="9" x2="23" y2="15"></line>
+          </svg>
+          <svg class="mute-icon mute-off" style="display:none;" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2">
+            <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          </svg>
+        </button>
+      </div>
+      <!-- Reel 4 -->
+      <div class="reel-card"
+        data-url="https://www.instagram.com/reel/DLbYVgnpE4W/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==">
+        <video class="reel-video" src="/videos/reel4.mp4" poster="/assets/photo/Image-911.jpg" playsinline
+          preload="auto"></video>
+        <div class="reel-overlay"></div>
+        <button class="mute-btn">
+          <svg class="mute-icon mute-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
+            <line x1="23" y1="9" x2="17" y2="15"></line>
+            <line x1="17" y1="9" x2="23" y2="15"></line>
+          </svg>
+          <svg class="mute-icon mute-off" style="display:none;" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2">
+            <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="reel-card"
+        data-url="https://www.instagram.com/reel/DGMzEPYJU0C/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==">
+        <video class="reel-video" src="/videos/reel5.mp4" poster="/assets/photo/Image-190.jpg" playsinline
+          preload="auto"></video>
+        <div class="reel-overlay"></div>
+        <button class="mute-btn">
+          <svg class="mute-icon mute-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
+            <line x1="23" y1="9" x2="17" y2="15"></line>
+            <line x1="17" y1="9" x2="23" y2="15"></line>
+          </svg>
+          <svg class="mute-icon mute-off" style="display:none;" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2">
+            <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="reel-card"
+        data-url="https://www.instagram.com/reel/DFVDZ9IS-xB/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==">
+        <video class="reel-video" src="/videos/reel6.mp4" poster="/assets/photo/Image-460.jpg" playsinline
+          preload="auto"></video>
+        <div class="reel-overlay"></div>
+        <button class="mute-btn">
+          <svg class="mute-icon mute-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
+            <line x1="23" y1="9" x2="17" y2="15"></line>
+            <line x1="17" y1="9" x2="23" y2="15"></line>
+          </svg>
+          <svg class="mute-icon mute-off" style="display:none;" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2">
+            <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </section>
+  <!-- ═══════════════════════════════════════════════════════════════
+       ABOUT INKLAYER SECTION
+  ═══════════════════════════════════════════════════════════════ -->
+  <section class="about-inklayer" id="about">
+    <div class="about-bg">
+      <img src="/assets/photo/IMG_7701.jpeg" alt="Model wearing Inklayer hoodie" class="about-bg-img" />
+      <div class="about-overlay-gradient"></div>
+    </div>
+
+    <div class="about-content">
+      <div class="about-text-block">
+        <div class="about-label">OUR STORY</div>
+        <h2 class="about-title">ABOUT INKLAYER</h2>
+        <p class="about-desc">
+          Inklayer is built for those who move different. Every piece is designed to express identity, attitude, and
+          presence — not just style.
+        </p>
+
+        <div class="about-philosophy">
+          <p>Not made to fit in.</p>
+          <p>Built to stand out.</p>
+          <p>Every layer has a purpose.</p>
+        </div>
+
+        <a href="#collection" class="about-cta-btn">Explore Collection</a>
+
+        <div class="about-stats">
+          <span>Premium Fabric</span>
+          <span class="separator">&bull;</span>
+          <span>Oversized Fit</span>
+          <span class="separator">&bull;</span>
+          <span>Limited Drops</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       JOIN THE DROP SECTION
+  ═══════════════════════════════════════════════════════════════ -->
+  <section class="join-drop" id="join-drop">
+    <div class="join-drop-bg-gradient"></div>
+    <div class="join-drop-inner">
+      <span class="join-drop-eyebrow">EXCLUSIVE ACCESS</span>
+      <h2 class="join-drop-title">Join the Drop</h2>
+      <p class="join-drop-subtext">Be the first to access new releases and exclusive drops</p>
+      <form class="join-drop-form" id="join-drop-form" novalidate>
+        <div class="join-drop-input-wrap">
+          <input
+            type="email"
+            id="join-drop-email"
+            name="email"
+            placeholder="Enter your email address"
+            autocomplete="email"
+            required
+          />
+          <button type="submit" class="join-drop-btn" id="join-drop-btn">Join Now</button>
+        </div>
+        <p class="join-drop-privacy">No spam. Drop alerts only. Unsubscribe anytime.</p>
+      </form>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════════════════════════ -->
+  <footer class="site-footer" id="footer">
+    <div class="site-footer-inner">
+
+      <!-- TOP ROW -->
+      <div class="footer-top">
+        <!-- Left: Brand -->
+        <div class="footer-brand">
+          <span class="footer-logo-text">INKLAYER</span>
+          <p class="footer-tagline">Built in layers. Worn with attitude.</p>
+        </div>
+
+        <!-- Center: Nav Links -->
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <a href="#collections" class="footer-nav-link">Collections</a>
+          <a href="#drops"       class="footer-nav-link">Drops</a>
+          <a href="#about"       class="footer-nav-link">About</a>
+          <a href="#bulk-orders" class="footer-nav-link">Bulk Orders</a>
+          <a href="#join-drop"   class="footer-nav-link">Community</a>
+        </nav>
+
+        <!-- Right: Socials -->
+        <div class="footer-socials-col">
+          <span class="footer-socials-label">Follow Us</span>
+          <div class="footer-socials-row">
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/inklayer.shop" target="_blank" rel="noopener"
+               class="footer-social-icon" aria-label="Inklayer on Instagram" id="footer-ig">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                   stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                <circle cx="12" cy="12" r="4"/>
+                <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+              </svg>
+            </a>
+            <!-- YouTube -->
+            <a href="#" target="_blank" rel="noopener"
+               class="footer-social-icon" aria-label="Inklayer on YouTube" id="footer-yt">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                   stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78
+                         2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0
+                         1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0
+                         1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/>
+                <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- DIVIDER -->
+      <div class="footer-divider"></div>
+
+      <!-- BOTTOM ROW -->
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2026 Inklayer. All rights reserved.</p>
+        <p class="footer-made-in">Made with passion in Mangaluru, India.</p>
+      </div>
+
+    </div>
+  </footer>
+
+  <script type="module" src="./main.js"></script>
+</body>
+
+</html>
