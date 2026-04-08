@@ -33,7 +33,15 @@ gsap.ticker.lagSmoothing(0);
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
     e.preventDefault();
-    lenis.scrollTo(this.getAttribute('href'));
+    const targetId = this.getAttribute('href');
+    if (targetId === '#hero' || targetId === '#') {
+      lenis.scrollTo(0);
+    } else {
+      const targetEl = document.querySelector(targetId);
+      if (targetEl) {
+        lenis.scrollTo(targetEl);
+      }
+    }
   });
 });
 
