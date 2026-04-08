@@ -1,6 +1,29 @@
-fastapi
-uvicorn
-pydantic
-email-validator
-slowapi
-aiosqlite
+# Inklayer Backend — Python Dependencies
+# Install with: pip install -r requirements.txt
+
+# ── Core API ──────────────────────────────────────────────────────────────────
+fastapi>=0.111.0
+uvicorn[standard]>=0.29.0
+
+# ── Data Validation ───────────────────────────────────────────────────────────
+pydantic[email]>=2.6.0
+email-validator>=2.1.1
+
+# ── Database ──────────────────────────────────────────────────────────────────
+aiosqlite>=0.20.0
+
+# ── Rate Limiting ─────────────────────────────────────────────────────────────
+slowapi>=0.1.9
+
+# ── Email ─────────────────────────────────────────────────────────────────────
+resend>=0.7.2
+
+# ── Auth (JWT + Password Hashing) ─────────────────────────────────────────────
+python-jose[cryptography]>=3.3.0
+passlib[bcrypt]>=1.7.4
+
+# ── Input Sanitization ────────────────────────────────────────────────────────
+bleach>=6.1.0
+
+# ── Environment Config ────────────────────────────────────────────────────────
+python-dotenv>=1.0.1

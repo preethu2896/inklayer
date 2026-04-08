@@ -1,34 +1,40 @@
-from fastapi import APIRouter, Request, BackgroundTasks
+from fastapi import APIRouter, Request, BackgroundTasks, HTTPException, status
 from ..models.schemas import SubscribeRequest, SubscribeResponse
-from ..services.db_service import add_subscriber, get_all_subscribers
+from ..services.db_service import add_subscriber
 from ..services.email_service import send_confirmation_email
 from ..services.rate_limiter import limiter
 
 router = APIRouter()
 
-@router.post("/subscribe", response_model=SubscribeResponse)
-@limiter.limit("3/minute")
-async def subscribe_email(request: Request, body: SubscribeRequest, background_tasks: BackgroundTasks):
-    email = body.email.lower().strip()
-    
-    # Insert safely to the persistent lightweight DB
-    success = await add_subscriber(email)
-    
-    if not success:
-        # Prevent duplicate entries response
-        return SubscribeResponse(message="You're already on the list.")
-    
-    # Dispatch email sending to background to ensure fast response times
-    background_tasks.add_task(send_confirmation_email, email)
-    
-    # Clean premium success message
-    return SubscribeResponse(message="You're in. Welcome to Inklayer.")
 
-@router.get("/emails")
-async def get_emails(request: Request):
+@router.post(
+    "/subscribe",
+    response_model=SubscribeResponse,
+    summary="Join the Drop waitlist",
+    tags=["Public"],
+)
+@limiter.limit("3/minute")
+async def subscribe_email(
+    _request: Request,
+    body: SubscribeRequest,
+    background_tasks: BackgroundTasks,
+):
     """
-    Retrieves all subscribers.
-    NOTE: In production, add a dependency strictly verifying admin credentials here.
+    Submit an email to join the Inklayer drop waitlist.
+    - Validates email format via Pydantic EmailStr (email-validator library)
+    - Prevents duplicates at the database level
+    - Sends confirmation email asynchronously (non-blocking)
+    - Rate limited to 3 requests per minute per IP
     """
-    subs = await get_all_subscribers()
-    return {"count": len(subs), "subscribers": subs}
+    email = body.email  # Already sanitized + lowercased by the Pydantic validator
+
+    success = await add_subscriber(email)
+
+    if not success:
+        # Duplicate — not an error, just a soft response
+        return SubscribeResponse(success=False, message="You're already on the list.")
+
+    # Non-blocking: fire the email and return immediately
+    background_tasks.add_task(send_confirmation_email, email)
+
+    return SubscribeResponse(success=True, message="You're in. Welcome to Inklayer.")
