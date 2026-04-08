@@ -12,11 +12,10 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap"
-    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="./theme-updates.css" />
 </head>
 
 <body>
@@ -45,7 +44,8 @@
 
     <!-- RIGHT: CTA + Hamburger -->
     <div class="nav-right">
-      <button class="nav-cta open-reserve-modal" id="nav-shop-btn">Shop Now</button>
+      <a href="#login" class="nav-link hidden-mobile">Login</a>
+      <a href="#cart" class="nav-cart-icon" aria-label="Cart">🛒</a>
       <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -77,12 +77,12 @@
       <div class="hero-overlay"></div>
     </div>
     <div class="hero-content">
-      <div class="hero-details">
-        <h1 class="hero-title">Not just clothing<br><span class="accent">It’s your identity</span></h1>
+      <div class="hero-details fade-up">
+        <h1 class="hero-title">BUILT IN LAYERS.<br>WORN WITH ATTITUDE.</h1>
         <p class="hero-subtitle">Premium oversized streetwear crafted for bold expression.</p>
         <div class="hero-cta-group">
-          <a class="primary-btn" href="https://www.instagram.com/inklayer.shop" target="_blank" rel="noopener"
-            id="hero-cta">Shop Now</a>
+          <a class="primary-btn outline-btn" href="https://www.instagram.com/inklayer.shop" target="_blank" rel="noopener"
+            id="hero-cta">SHOP NOW</a>
         </div>
       </div>
     </div>
@@ -98,7 +98,7 @@
     </div>
     <div class="collections-grid">
       <!-- Collection 1 -->
-      <a href="#" class="collection-card">
+      <a href="#" class="collection-card fade-up">
         <div class="card-img-wrapper">
           <img src="/assets/photo/bg1.png" alt="Inferno Drop" />
           <div class="card-overlay"></div>
@@ -110,7 +110,7 @@
         </div>
       </a>
       <!-- Collection 2 -->
-      <a href="#" class="collection-card">
+      <a href="#" class="collection-card fade-up" style="transition-delay: 0.1s;">
         <div class="card-img-wrapper">
           <img src="/assets/photo/ethos-bg.png" alt="Core Minimal" />
           <div class="card-overlay"></div>
@@ -119,54 +119,6 @@
           <h3 class="card-title">Core Minimal</h3>
           <p class="card-desc">Clean monochrome essentials for everyday wear</p>
           <span class="card-cta">Shop Minimal</span>
-        </div>
-      </a>
-      <!-- Collection 3 -->
-      <a href="#" class="collection-card">
-        <div class="card-img-wrapper">
-          <img src="/assets/photo/ethos-bg-rs.png" alt="Core Minimal" />
-          <div class="card-overlay"></div>
-        </div>
-        <div class="card-content">
-          <h3 class="card-title">Acid Drop</h3>
-          <p class="card-desc">Unique acid-washed tonal variation</p>
-          <span class="card-cta">Shop Acid</span>
-        </div>
-      </a>
-      <!-- Collection 4 (Hidden initially) -->
-      <a href="#" class="collection-card hidden-card">
-        <div class="card-img-wrapper">
-          <img src="/assets/photo/z1.png" alt="Layered Fits" />
-          <div class="card-overlay"></div>
-        </div>
-        <div class="card-content">
-          <h3 class="card-title">Layered Series</h3>
-          <p class="card-desc">Heavyweight silhouettes made for winter layering.</p>
-          <span class="card-cta">Shop Layers</span>
-        </div>
-      </a>
-      <!-- Collection 5 (Hidden initially) -->
-      <a href="#" class="collection-card hidden-card">
-        <div class="card-img-wrapper">
-          <img src="/assets/photo/q1.png" alt="Graphics" />
-          <div class="card-overlay"></div>
-        </div>
-        <div class="card-content">
-          <h3 class="card-title">Statement Tees</h3>
-          <p class="card-desc">Oversized fit. Bold graphic language.</p>
-          <span class="card-cta">Shop Statement</span>
-        </div>
-      </a>
-      <!-- Collection 6 (Hidden initially) -->
-      <a href="#" class="collection-card hidden-card">
-        <div class="card-img-wrapper">
-          <img src="/assets/photo/wholesale-bg.png" alt="Essentials" />
-          <div class="card-overlay"></div>
-        </div>
-        <div class="card-content">
-          <h3 class="card-title">Street Essentials</h3>
-          <p class="card-desc">The foundation of the modern streetwear wardrobe.</p>
-          <span class="card-cta">Shop Essentials</span>
         </div>
       </a>
     </div>
@@ -231,8 +183,9 @@
        DROPS / REELS CAROUSEL SECTION
   ═══════════════════════════════════════════════════════════════ -->
   <section class="drops" id="drops">
-    <div class="drops-header">
-      <h2 class="drops-title">OUR DROPS</h2>
+    <div class="drops-header fade-up">
+      <span class="drops-label">LATEST DROP</span>
+      <h2 class="drops-title">LIMITED. NO RESTOCKS.</h2>
     </div>
 
     <div class="reels-carousel">
@@ -360,28 +313,17 @@
     </div>
 
     <div class="about-content">
-      <div class="about-text-block">
+      <div class="about-text-block fade-up">
         <div class="about-label">OUR STORY</div>
         <h2 class="about-title">ABOUT INKLAYER</h2>
         <p class="about-desc">
-          Inklayer is built for those who move different. Every piece is designed to express identity, attitude, and
-          presence — not just style.
+          Inklayer is built for those who move different. Every piece is designed to express identity, attitude, and presence — not just style.
         </p>
 
-        <div class="about-philosophy">
-          <p>Not made to fit in.</p>
-          <p>Built to stand out.</p>
-          <p>Every layer has a purpose.</p>
-        </div>
-
-        <a href="#collection" class="about-cta-btn">Explore Collection</a>
-
-        <div class="about-stats">
-          <span>Premium Fabric</span>
-          <span class="separator">&bull;</span>
-          <span>Oversized Fit</span>
-          <span class="separator">&bull;</span>
-          <span>Limited Drops</span>
+        <div class="about-philosophy fade-up" style="transition-delay: 0.2s;">
+          <p>NOT MADE TO FIT IN.</p>
+          <p>BUILT TO STAND OUT.</p>
+          <p>EVERY LAYER HAS A PURPOSE.</p>
         </div>
       </div>
     </div>

@@ -356,8 +356,25 @@ function initReelsCarousel() {
     const video = card.querySelector('.reel-video');
     card.dataset.muted = "false";
     
+    // Add progress bar
+    let progressBar = card.querySelector('.reel-progress');
+    if (!progressBar) {
+      progressBar = document.createElement('div');
+      progressBar.className = 'reel-progress';
+      card.appendChild(progressBar);
+    }
+
+    video.addEventListener('timeupdate', () => {
+      if (video.duration > 0 && progressBar) {
+        const percentage = (video.currentTime / video.duration) * 100;
+        progressBar.style.width = percentage + '%';
+      }
+    });
+    
     // When video ends
     video.addEventListener('ended', () => {
+      // Reset progress
+      if (progressBar) progressBar.style.width = '0%';
       // Always slide to next when video finishes
       if (card.classList.contains('is-center')) {
         nextReel();
@@ -500,6 +517,29 @@ function initAboutAnimations() {
 }
 
 /* ───────────────────────────────────────────────────────────────
+   MICRO-INTERACTIONS
+   ─────────────────────────────────────────────────────────────── */
+function initMicroInteractions() {
+  const faders = document.querySelectorAll('.fade-up');
+  const appearOptions = {
+    threshold: 0.1,
+    rootMargin: "0px 0px -50px 0px"
+  };
+  const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, appearOptions);
+
+  faders.forEach(fader => {
+    appearOnScroll.observe(fader);
+  });
+}
+
+/* ───────────────────────────────────────────────────────────────
    INITIALIZE EVERYTHING
    ─────────────────────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
@@ -510,6 +550,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCollections();
   initReelsCarousel();
   initAboutAnimations();
+  initMicroInteractions();
 });
 
 window.addEventListener('load', () => {
