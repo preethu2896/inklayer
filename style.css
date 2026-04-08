@@ -2983,12 +2983,3 @@ input:checked + .slider:before {
     padding: 56px 5% 32px;
   }
 }
-
-.drops, #drops, section.drops {
-  background-color: #000 !important;
-  color: #fff !important;
-}
-
-.drops h2, .drops-title, .drops-header * {
-  color: #fff !important;
-}
