@@ -34,12 +34,16 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
     e.preventDefault();
     const targetId = this.getAttribute('href');
+    const scrollOptions = {
+      duration: 1.5,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+    };
     if (targetId === '#hero' || targetId === '#') {
-      lenis.scrollTo(0);
+      lenis.scrollTo(0, scrollOptions);
     } else {
       const targetEl = document.querySelector(targetId);
       if (targetEl) {
-        lenis.scrollTo(targetEl);
+        lenis.scrollTo(targetEl, scrollOptions);
       }
     }
   });
@@ -59,17 +63,20 @@ function initHeroAnimations() {
   if (!bgVideo) return;
 
   // Entrance Timeline
+  // Force video to play immediately if supported
+  bgVideo.play().catch(() => {});
+
   const heroTl = gsap.timeline({ defaults: { ease: 'power2.out' } });
 
-  gsap.set(bgVideo, { scale: 1.2, opacity: 0 });
+  gsap.set(bgVideo, { scale: 1.2, opacity: 1 });
   gsap.set(heroTitle, { y: 60, opacity: 0 });
   gsap.set(heroSubtitle, { y: 40, opacity: 0 });
   gsap.set(heroCta, { y: 30, opacity: 0 });
   gsap.set(nav, { y: -100, opacity: 0 });
 
   heroTl
-    .to(bgVideo, { scale: 1.05, opacity: 1, duration: 2.5 })
-    .to(heroTitle, { y: 0, opacity: 1, duration: 1.2 }, '-=1.5')
+    .to(bgVideo, { scale: 1.05, duration: 2.5 })
+    .to(heroTitle, { y: 0, opacity: 1, duration: 1.2 }, '-=2.0')
     .to(heroSubtitle, { y: 0, opacity: 1, duration: 1 }, '-=0.8')
     .to(heroCta, { y: 0, opacity: 1, duration: 1 }, '-=0.6')
     .to(nav, { y: 0, opacity: 1, duration: 1, ease: 'power4.out' }, '-=0.8');
