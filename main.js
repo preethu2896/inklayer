@@ -523,6 +523,82 @@ function initAboutAnimations() {
 }
 
 /* ───────────────────────────────────────────────────────────────
+   JOIN THE DROP - BACKEND INTEGRATION
+   ─────────────────────────────────────────────────────────────── */
+function initJoinDropForm() {
+  const form = document.getElementById('join-drop-form');
+  const emailInput = document.getElementById('join-drop-email');
+  const submitBtn = document.getElementById('join-drop-btn');
+  const privacyText = document.querySelector('.join-drop-privacy');
+
+  if (!form) return;
+
+  const originalPrivacyText = privacyText.innerText;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = emailInput.value.trim();
+    if (!email) return;
+
+    // Loading State
+    const originalBtnText = submitBtn.innerText;
+    submitBtn.innerText = 'Joining...';
+    submitBtn.disabled = true;
+    submitBtn.style.opacity = '0.7';
+    privacyText.style.color = ''; // reset previous error color
+
+    try {
+      const response = await fetch('http://localhost:8000/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        submitBtn.innerText = 'Access Granted';
+        privacyText.innerText = data.message;
+        emailInput.value = '';
+      } else {
+        // Handle validation or rate limit gracefully vs raw errors
+        let errorMsg = 'Something went wrong. Please try again.';
+        
+        if (response.status === 429) {
+          errorMsg = 'Too many attempts. Please try again in a minute.';
+        } else if (response.status === 422) {
+          errorMsg = 'Please enter a valid email address.';
+        } else if (data.detail) {
+          errorMsg = typeof data.detail === 'string' ? data.detail : errorMsg;
+        }
+
+        submitBtn.innerText = 'Try Again';
+        privacyText.innerText = errorMsg;
+        privacyText.style.color = '#ff5b5b'; // Subtle red
+      }
+    } catch (err) {
+      submitBtn.innerText = 'Server Error';
+      privacyText.innerText = 'Network connection failed. Try again later.';
+      privacyText.style.color = '#ff5b5b';
+    } finally {
+      setTimeout(() => {
+        submitBtn.disabled = false;
+        submitBtn.style.opacity = '1';
+        if (!submitBtn.innerText.includes('Access')) {
+          submitBtn.innerText = originalBtnText;
+        }
+        if (privacyText.style.color !== '') {
+          setTimeout(() => {
+             privacyText.style.color = '';
+             privacyText.innerText = originalPrivacyText;
+          }, 3000); // Revert error message back to normal after a brief delay
+        }
+      }, 2500); // Wait before re-enabling entirely
+    }
+  });
+}
+
+/* ───────────────────────────────────────────────────────────────
    INITIALIZE EVERYTHING
    ─────────────────────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
@@ -533,6 +609,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCollections();
   initReelsCarousel();
   initAboutAnimations();
+  initJoinDropForm();
 });
 
 window.addEventListener('load', () => {
