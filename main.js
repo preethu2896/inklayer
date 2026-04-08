@@ -29,6 +29,14 @@ gsap.ticker.add((time) => {
 
 gsap.ticker.lagSmoothing(0);
 
+// Add smooth scrolling to all anchor links (including Inklayer logo)
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    lenis.scrollTo(this.getAttribute('href'));
+  });
+});
+
 /* ───────────────────────────────────────────────────────────────
    HERO ANIMATIONS
    ─────────────────────────────────────────────────────────────── */
