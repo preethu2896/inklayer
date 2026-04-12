@@ -32,7 +32,7 @@ class SubscriberListResponse(BaseModel):
     subscribers: List[SubscriberOut]
 
 
-# ── Admin Auth ────────────────────────────────────────────────────────────────
+# ── Admin Auth ──────────────────────────────────────────────────────────
 
 class AdminLoginRequest(BaseModel):
     username: str
@@ -51,7 +51,7 @@ class TokenResponse(BaseModel):
     token_type: str = "bearer"
 
 
-# ── Drop Send ─────────────────────────────────────────────────────────────────
+# ── Drop Send ───────────────────────────────────────────────────────────
 
 class SendDropRequest(BaseModel):
     subject: str
@@ -71,7 +71,7 @@ class SendDropResponse(BaseModel):
     message: str
 
 
-# ── Tag Update ────────────────────────────────────────────────────────────────
+# ── Tag Update ──────────────────────────────────────────────────────────
 
 class TagUpdateRequest(BaseModel):
     email: EmailStr

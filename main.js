@@ -557,9 +557,24 @@ function initJoinDropForm() {
       const data = await response.json();
 
       if (response.ok) {
-        submitBtn.innerText = 'Access Granted';
-        privacyText.innerText = data.message;
-        emailInput.value = '';
+        const innerContainer = document.querySelector('.join-drop-inner');
+        
+        if (data.success) {
+          innerContainer.innerHTML = `
+            <span class="join-drop-eyebrow" style="color: #a3a3a3;">ACCESS GRANTED</span>
+            <h2 class="join-drop-title" style="margin-bottom: 0.5rem;">YOU’RE IN</h2>
+            <p class="join-drop-subtext" style="color: #ffffff; font-size: 1.25rem;">Drop access unlocked. Check your inbox.</p>
+            <p class="join-drop-privacy" style="margin-top: 1.5rem; color: #888;">Email may take a few seconds to arrive</p>
+          `;
+        } else {
+          // Soft error (duplicate)
+          innerContainer.innerHTML = `
+            <span class="join-drop-eyebrow" style="color: #a3a3a3;">STATUS: ACTIVE</span>
+            <h2 class="join-drop-title" style="margin-bottom: 0.5rem;">ALREADY ON LIST</h2>
+            <p class="join-drop-subtext" style="color: #ffffff; font-size: 1.25rem;">${data.message}</p>
+          `;
+        }
+        return; // Don't process finally block's DOM resets since form is removed
       } else {
         // Handle validation or rate limit gracefully vs raw errors
         let errorMsg = 'Something went wrong. Please try again.';
@@ -581,19 +596,20 @@ function initJoinDropForm() {
       privacyText.innerText = 'Network connection failed. Try again later.';
       privacyText.style.color = '#ff5b5b';
     } finally {
-      setTimeout(() => {
-        submitBtn.disabled = false;
-        submitBtn.style.opacity = '1';
-        if (!submitBtn.innerText.includes('Access')) {
+      // Only reset the button state if the form still exists in the DOM
+      if (document.getElementById('join-drop-form')) {
+        setTimeout(() => {
+          submitBtn.disabled = false;
+          submitBtn.style.opacity = '1';
           submitBtn.innerText = originalBtnText;
-        }
-        if (privacyText.style.color !== '') {
-          setTimeout(() => {
-             privacyText.style.color = '';
-             privacyText.innerText = originalPrivacyText;
-          }, 3000); // Revert error message back to normal after a brief delay
-        }
-      }, 2500); // Wait before re-enabling entirely
+          if (privacyText.style.color !== '') {
+            setTimeout(() => {
+               privacyText.style.color = '';
+               privacyText.innerText = originalPrivacyText;
+            }, 3000); // Revert error message back to normal after a brief delay
+          }
+        }, 2500); // Wait before re-enabling entirely
+      }
     }
   });
 }

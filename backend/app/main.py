@@ -17,6 +17,8 @@ from .services.rate_limiter import limiter
 load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), '..', '.env'))
 
 # ── Lifespan (replaces deprecated @app.on_event) ─────────────────────────────
+
+
 @asynccontextmanager
 async def lifespan(_app: FastAPI):
     """Lifecycle events for FastAPI to initialize resources at startup."""
@@ -24,7 +26,7 @@ async def lifespan(_app: FastAPI):
     yield
 
 
-# ── App Instance ──────────────────────────────────────────────────────────────
+# ── App Instance ────────────────────────────────────────────────────────
 app = FastAPI(
     title="Inklayer Backend API",
     description=(
@@ -38,38 +40,48 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
-# ── Rate Limiter ──────────────────────────────────────────────────────────────
+# ── Rate Limiter ────────────────────────────────────────────────────────
 app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 app.add_middleware(SlowAPIMiddleware)
 
-# ── CORS ──────────────────────────────────────────────────────────────────────
-raw_origins = os.getenv("ALLOWED_ORIGINS", "http://localhost:5173,http://localhost:3000")
+# ── CORS ────────────────────────────────────────────────────────────────
+raw_origins = os.getenv(
+    "ALLOWED_ORIGINS",
+    "http://localhost:5173,http://localhost:3000")
 allowed_origins = [o.strip() for o in raw_origins.split(",")]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=allowed_origins,  # Tightened to env config; use ["*"] only in dev
+    # Tightened to env config; use ["*"] only in dev
+    allow_origins=allowed_origins,
     allow_credentials=True,
     allow_methods=["GET", "POST", "PATCH", "OPTIONS"],
     allow_headers=["Authorization", "Content-Type"],
 )
 
 # ── Custom Error Handler — never expose raw errors to users ──────────────────
+
+
 @app.exception_handler(Exception)
-async def global_exception_handler(_request: Request, _exc: Exception):
+async def global_exception_handler(request: Request, exc: Exception):
     """Catches all unhandled exceptions and returns a generic 500 JSON response."""
     return JSONResponse(
         status_code=500,
-        content={"success": False, "message": "Something went wrong. Please try again."},
+        content={
+            "success": False,
+            "message": "Something went wrong. Please try again."},
     )
 
-# ── Routes ────────────────────────────────────────────────────────────────────
+# ── Routes ──────────────────────────────────────────────────────────────
 app.include_router(subscribe.router, prefix="/api")
-app.include_router(admin.router,    prefix="/api")
+app.include_router(admin.router, prefix="/api")
 
-# ── Health Check ──────────────────────────────────────────────────────────────
+# ── Health Check ────────────────────────────────────────────────────────
+
+
 @app.get("/", tags=["Health"])
 def health_check():
     """Returns a basic 200 operational status when the backend is active."""
-    return {"status": "operational", "service": "Inklayer API", "version": "2.0.0"}
+    return {"status": "operational",
+            "service": "Inklayer API", "version": "2.0.0"}

@@ -1,10 +1,10 @@
 import os
 import logging
-from typing import List, Optional
+from typing import List
 
 logger = logging.getLogger("uvicorn.error")
 
-# ── Resend SDK (installed via pip install resend) ─────────────────────────────
+# ── Resend SDK (installed via pip install resend) ───────────────────────
 try:
     import resend
     RESEND_AVAILABLE = True
@@ -13,7 +13,7 @@ except ImportError:
     logger.warning("Resend SDK not installed. Emails will be logged only.")
 
 RESEND_API_KEY = os.getenv("RESEND_API_KEY", "")
-EMAIL_FROM     = os.getenv("EMAIL_FROM", "drops@inklayer.shop")
+EMAIL_FROM = os.getenv("EMAIL_FROM", "drops@inklayer.shop")
 
 
 def _get_confirmation_html(email: str) -> str:
@@ -86,18 +86,16 @@ def _get_confirmation_html(email: str) -> str:
 <body>
   <div class="wrapper">
     <div class="header">
-      <p class="brand">Inklayer</p>
-      <h1 class="headline">You're in the circle.</h1>
+      <p class="brand">INKLAYER</p>
+      <h1 class="headline">You're in.</h1>
     </div>
     <div class="body">
       <p>
-        You've secured early access to every Inklayer drop. No noise — just the signal,
-        when it matters.
+        You’re now part of the drop.<br>
+        Stay ready. Limited releases coming soon.
       </p>
-      <p>
-        When the next collection goes live, you'll be the first to know.
-        Keep an eye on this inbox.
-      </p>
+      <a href="https://inklayer.shop" style="display:inline-block; margin-top:20px; padding:12px 24px;
+        background-color:#ffffff; color:#000000; text-decoration:none; font-weight:600; border-radius:3px;">Explore Brand</a>
       <div class="divider"></div>
       <p style="font-size:13px; color:#555;">
         This confirmation was sent to <strong style="color:#888;">{email}</strong>.<br>
@@ -192,33 +190,67 @@ def _get_drop_html(subject: str, body: str) -> str:
 async def send_confirmation_email(email: str) -> bool:
     """
     Send a premium confirmation email to a new subscriber via Resend.
-    Falls back to console logging if Resend is not configured.
+    Falls back to SMTP if Resend is not configured or fails.
     """
-    subject = "You're in – Inklayer Drop Access"
+    subject = "You’re in – Inklayer Drop Access"
     html_body = _get_confirmation_html(email)
 
-    if RESEND_AVAILABLE and RESEND_API_KEY and not RESEND_API_KEY.startswith("re_your"):
+    resend_failed = False
+    if RESEND_AVAILABLE and RESEND_API_KEY and not RESEND_API_KEY.startswith(
+            "re_your"):
         try:
             resend.api_key = RESEND_API_KEY
             resend.Emails.send({
-                "from":    EMAIL_FROM,
-                "to":      [email],
+                "from": EMAIL_FROM,
+                "to": [email],
                 "subject": subject,
-                "html":    html_body,
+                "html": html_body,
             })
-            logger.info(f"[EMAIL] Confirmation sent → {email}")
+            logger.info(f"[EMAIL] Confirmation sent via Resend → {email}")
             return True
         except Exception as e:
             logger.error(f"[EMAIL] Resend error for {email}: {e}")
-            return False
+            resend_failed = True
     else:
-        # Development fallback — log to console
-        logger.info(f"\n{'─'*48}")
-        logger.info(f"  [DEV EMAIL] To:      {email}")
-        logger.info(f"  [DEV EMAIL] Subject: {subject}")
-        logger.info(f"  [DEV EMAIL] Body:    Premium HTML confirmation (see email_service.py)")
-        logger.info(f"{'─'*48}\n")
-        return True
+        resend_failed = True
+
+    if resend_failed:
+        SMTP_HOST = os.getenv("SMTP_HOST")
+        SMTP_USER = os.getenv("SMTP_USER")
+        SMTP_PASS = os.getenv("SMTP_PASS")
+        SMTP_PORT = int(os.getenv("SMTP_PORT", "587"))
+
+        if SMTP_HOST and SMTP_USER and SMTP_PASS:
+            try:
+                import smtplib
+                from email.mime.text import MIMEText
+                from email.mime.multipart import MIMEMultipart
+
+                msg = MIMEMultipart("alternative")
+                msg["Subject"] = subject
+                msg["From"] = EMAIL_FROM
+                msg["To"] = email
+                msg.attach(MIMEText(html_body, "html"))
+
+                with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as server:
+                    server.starttls()
+                    server.login(SMTP_USER, SMTP_PASS)
+                    server.sendmail(EMAIL_FROM, email, msg.as_string())
+
+                logger.info(f"[EMAIL] Confirmation sent via SMTP → {email}")
+                return True
+            except Exception as e:
+                logger.error(f"[EMAIL] SMTP error for {email}: {e}")
+                return False
+        else:
+            # Development fallback — log to console
+            logger.info(f"\n{'─' * 48}")
+            logger.info(f"  [DEV EMAIL] To:      {email}")
+            logger.info(f"  [DEV EMAIL] Subject: {subject}")
+            logger.info(
+                "  [DEV EMAIL] Body:    Premium HTML confirmation (see email_service.py)")
+            logger.info(f"{'─' * 48}\n")
+            return False
 
 
 async def send_drop_email(emails: List[str], subject: str, body: str) -> int:
@@ -230,27 +262,28 @@ async def send_drop_email(emails: List[str], subject: str, body: str) -> int:
     html_body = _get_drop_html(subject, body)
     sent = 0
 
-    if RESEND_AVAILABLE and RESEND_API_KEY and not RESEND_API_KEY.startswith("re_your"):
+    if RESEND_AVAILABLE and RESEND_API_KEY and not RESEND_API_KEY.startswith(
+            "re_your"):
         resend.api_key = RESEND_API_KEY
         for email in emails:
             try:
                 resend.Emails.send({
-                    "from":    EMAIL_FROM,
-                    "to":      [email],
+                    "from": EMAIL_FROM,
+                    "to": [email],
                     "subject": subject,
-                    "html":    html_body,
+                    "html": html_body,
                 })
                 sent += 1
                 logger.info(f"[DROP] Sent → {email}")
             except Exception as e:
                 logger.error(f"[DROP] Failed → {email}: {e}")
     else:
-        logger.info(f"\n{'─'*48}")
+        logger.info(f"\n{'─' * 48}")
         logger.info(f"  [DEV DROP] Subject: {subject}")
         logger.info(f"  [DEV DROP] Would send to {len(emails)} subscriber(s):")
         for email in emails:
             logger.info(f"    · {email}")
             sent += 1
-        logger.info(f"{'─'*48}\n")
+        logger.info(f"{'─' * 48}\n")
 
     return sent

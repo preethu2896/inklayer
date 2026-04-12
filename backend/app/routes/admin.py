@@ -23,7 +23,7 @@ from ..services.email_service import send_drop_email
 router = APIRouter()
 
 
-# ── Auth ──────────────────────────────────────────────────────────────────────
+# ── Auth ────────────────────────────────────────────────────────────────
 
 @router.post(
     "/admin/login",
@@ -45,7 +45,7 @@ async def admin_login(body: AdminLoginRequest):
     return TokenResponse(access_token=token)
 
 
-# ── Subscriber Management ─────────────────────────────────────────────────────
+# ── Subscriber Management ───────────────────────────────────────────────
 
 @router.get(
     "/emails",
@@ -63,7 +63,8 @@ async def get_emails(
     """
     rows = await get_all_subscribers(tag=tag)
     subscribers = [SubscriberOut(**row) for row in rows]
-    return SubscriberListResponse(count=len(subscribers), subscribers=subscribers)
+    return SubscriberListResponse(
+        count=len(subscribers), subscribers=subscribers)
 
 
 @router.patch(
@@ -84,10 +85,11 @@ async def update_tag(
             status_code=status.HTTP_404_NOT_FOUND,
             detail=f"Subscriber '{body.email}' not found.",
         )
-    return {"success": True, "message": f"Tag updated to '{body.tag}' for {body.email}."}
+    return {"success": True,
+            "message": f"Tag updated to '{body.tag}' for {body.email}."}
 
 
-# ── CSV Export ────────────────────────────────────────────────────────────────
+# ── CSV Export ──────────────────────────────────────────────────────────
 
 @router.get(
     "/admin/export",
@@ -111,7 +113,7 @@ async def export_csv(
     )
 
 
-# ── Drop Notification ─────────────────────────────────────────────────────────
+# ── Drop Notification ───────────────────────────────────────────────────
 
 @router.post(
     "/send-drop",

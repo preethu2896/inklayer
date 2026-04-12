@@ -7,14 +7,14 @@ from passlib.context import CryptContext
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 
-# ── Config from environment ───────────────────────────────────────────────────
-ADMIN_USERNAME    = os.getenv("ADMIN_USERNAME", "admin")
-ADMIN_PASSWORD    = os.getenv("ADMIN_PASSWORD", "change_me_in_production")
-JWT_SECRET        = os.getenv("JWT_SECRET", "dev_secret_please_change")
-JWT_ALGORITHM     = os.getenv("JWT_ALGORITHM", "HS256")
+# ── Config from environment ─────────────────────────────────────────────
+ADMIN_USERNAME = os.getenv("ADMIN_USERNAME", "admin")
+ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD", "change_me_in_production")
+JWT_SECRET = os.getenv("JWT_SECRET", "dev_secret_please_change")
+JWT_ALGORITHM = os.getenv("JWT_ALGORITHM", "HS256")
 JWT_EXPIRE_MINUTES = int(os.getenv("JWT_EXPIRE_MINUTES", "60"))
 
-# ── Password Hashing ──────────────────────────────────────────────────────────
+# ── Password Hashing ────────────────────────────────────────────────────
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/admin/login")
 
@@ -27,7 +27,8 @@ def verify_admin_credentials(username: str, password: str) -> bool:
     return username == ADMIN_USERNAME and password == ADMIN_PASSWORD
 
 
-def create_access_token(data: dict, expires_delta: Optional[timedelta] = None) -> str:
+def create_access_token(
+        data: dict, expires_delta: Optional[timedelta] = None) -> str:
     """Creates a signed JWT token with an expiry."""
     to_encode = data.copy()
     expire = datetime.utcnow() + (expires_delta or timedelta(minutes=JWT_EXPIRE_MINUTES))

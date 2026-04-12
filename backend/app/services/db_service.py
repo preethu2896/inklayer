@@ -5,7 +5,12 @@ import io
 from typing import List, Optional
 
 # Store DB in the backend/data/ directory (created on startup)
-DB_PATH = os.path.join(os.path.dirname(__file__), '..', '..', 'data', 'inklayer.db')
+DB_PATH = os.path.join(
+    os.path.dirname(__file__),
+    '..',
+    '..',
+    'data',
+    'inklayer.db')
 
 
 async def init_db():
@@ -77,7 +82,13 @@ async def export_subscribers_csv(tag: Optional[str] = None) -> str:
     """
     rows = await get_all_subscribers(tag=tag)
     output = io.StringIO()
-    writer = csv.DictWriter(output, fieldnames=["id", "email", "tag", "created_at"])
+    writer = csv.DictWriter(
+        output,
+        fieldnames=[
+            "id",
+            "email",
+            "tag",
+            "created_at"])
     writer.writeheader()
     writer.writerows(rows)
     return output.getvalue()

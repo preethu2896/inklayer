@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Request, BackgroundTasks, HTTPException, status
+from fastapi import APIRouter, Request, BackgroundTasks
 from ..models.schemas import SubscribeRequest, SubscribeResponse
 from ..services.db_service import add_subscriber
 from ..services.email_service import send_confirmation_email
@@ -15,7 +15,7 @@ router = APIRouter()
 )
 @limiter.limit("3/minute")
 async def subscribe_email(
-    _request: Request,
+    request: Request,
     body: SubscribeRequest,
     background_tasks: BackgroundTasks,
 ):
@@ -32,9 +32,11 @@ async def subscribe_email(
 
     if not success:
         # Duplicate — not an error, just a soft response
-        return SubscribeResponse(success=False, message="You're already on the list.")
+        return SubscribeResponse(
+            success=False, message="You're already on the list")
 
     # Non-blocking: fire the email and return immediately
     background_tasks.add_task(send_confirmation_email, email)
 
-    return SubscribeResponse(success=True, message="You're in. Welcome to Inklayer.")
+    return SubscribeResponse(
+        success=True, message="You're in. Welcome to Inklayer.")
