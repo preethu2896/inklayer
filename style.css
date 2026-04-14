@@ -3156,6 +3156,10 @@ input:checked + .slider:before {
   fill: #e5c158; /* Warm matte gold */
 }
 
+.t-star-svg.empty {
+  fill: #222; /* Dim, realistically unlit star base */
+}
+
 .t-review {
   font-family: var(--font-serif);
   font-size: 1.1rem;
