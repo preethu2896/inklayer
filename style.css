@@ -3103,6 +3103,13 @@ input:checked + .slider:before {
   letter-spacing: 1px;
   flex-shrink: 0;
   border: 1px solid #333;
+  overflow: hidden; /* Ensures the image doesn't break out of the circle! */
+}
+
+.t-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Keeps image perfectly scaled without stretching */
 }
 
 .t-meta {
