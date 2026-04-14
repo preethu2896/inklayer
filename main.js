@@ -6,6 +6,7 @@
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
+import { initMetallicLogo } from './metallicPaint.js';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -626,6 +627,9 @@ document.addEventListener('DOMContentLoaded', () => {
   initReelsCarousel();
   initAboutAnimations();
   initJoinDropForm();
+  
+  // Initialize Metallic Logo effect
+  initMetallicLogo('#nav-logo-link');
 });
 
 window.addEventListener('load', () => {
