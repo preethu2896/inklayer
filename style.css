@@ -3133,13 +3133,18 @@ input:checked + .slider:before {
 .cp-eyebrow::after  { left: 100%;  margin-left:  -18px; }
 
 .cp-title {
-  font-family: var(--font-accent);
-  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  font-family: var(--font-serif);
+  font-size: clamp(2.4rem, 4.5vw, 3.5rem);
+  font-weight: 400;
   color: var(--accent-cream);
-  line-height: 1.1;
-  margin-bottom: 16px;
+  line-height: 1.15;
+  margin-bottom: 24px;
+  letter-spacing: -0.01em;
+}
+
+.cp-title em {
+  font-style: italic;
+  color: var(--primary-color);
 }
 
 .cp-sub {
