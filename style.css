@@ -3209,6 +3209,33 @@ input:checked + .slider:before {
   height: 100%;
 }
 
+/* Logo image (for colleges with actual logo files) */
+.cp-card-logo {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.35s ease;
+}
+
+.cp-card:hover .cp-card-logo {
+  transform: scale(1.06);
+}
+
+.cp-logo-img {
+  max-height: 80px;
+  max-width: 100%;
+  width: auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1) opacity(0.85);
+  transition: filter 0.35s ease, opacity 0.35s ease;
+}
+
+.cp-card:hover .cp-logo-img {
+  filter: brightness(0) invert(1) opacity(1) drop-shadow(0 0 8px rgba(244, 98, 42, 0.4));
+}
+
 /* College name */
 .cp-card-name {
   font-family: var(--font-sans);
