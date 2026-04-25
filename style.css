@@ -2662,7 +2662,7 @@ input:checked + .slider:before {
 .join-drop {
   position: relative;
   z-index: 10;
-  padding: 140px 5%;
+  padding: 80px 5% 120px;
   background-color: var(--bg-color);
   overflow: hidden;
   text-align: center;
@@ -3015,7 +3015,7 @@ input:checked + .slider:before {
   position: relative;
   z-index: 10;
   background-color: var(--bg-color);
-  padding: 100px 0 60px 0;
+  padding: 100px 0 0 0;
   overflow: hidden;
 }
 
