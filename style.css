@@ -3079,7 +3079,7 @@ input:checked + .slider:before {
   position: relative;
   z-index: 10;
   background-color: var(--bg-color);
-  padding: 100px 5%;
+  padding: 100px 5% 20px;
   overflow: hidden;
 }
 
@@ -3276,7 +3276,7 @@ input:checked + .slider:before {
 }
 
 @media (max-width: 480px) {
-  .college-partners { padding: 80px 6%; }
+  .college-partners { padding: 80px 6% 20px; }
   .cp-logo-wall {
     grid-template-columns: repeat(2, 1fr);
     gap: 16px;
@@ -3289,7 +3289,7 @@ input:checked + .slider:before {
   position: relative;
   z-index: 10;
   background-color: var(--bg-color);
-  padding: 100px 5%;
+  padding: 40px 5% 100px;
   overflow: hidden;
 }
 
@@ -3448,7 +3448,7 @@ input:checked + .slider:before {
 /* ── Responsive ── */
 @media (max-width: 768px) {
   .bulk-orders {
-    padding: 80px 5%;
+    padding: 30px 5% 80px;
   }
 
   .bulk-orders-form {
