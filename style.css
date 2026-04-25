@@ -348,6 +348,7 @@ button {
 
 /* ── Responsive: show hamburger ── */
 @media (max-width: 900px) {
+  .nav { display: flex; justify-content: space-between; }
   .nav-center-links { display: none; }
   .nav-hamburger { display: flex; }
   .nav-cta { display: none; } /* Hide desktop CTA; CTA lives in drawer */
@@ -3536,10 +3537,10 @@ input:checked + .slider:before {
 }
 
 .t-card {
-  width: 400px;
+  width: clamp(280px, 85vw, 400px);
   background: linear-gradient(135deg, #111111 0%, #0e0e0e 100%);
   border-radius: 12px;
-  padding: 36px;
+  padding: 32px;
   flex-shrink: 0;
   border: 1px solid rgba(255, 255, 255, 0.06);
   display: flex;
@@ -3638,7 +3639,8 @@ input:checked + .slider:before {
   font-size: 0.92rem;
   color: #ffffff;
   white-space: nowrap;
-  overflow: visible;
+  overflow: hidden;
+  text-overflow: ellipsis;
   letter-spacing: 0.02em;
 }
 
