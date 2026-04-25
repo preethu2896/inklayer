@@ -615,6 +615,25 @@ function initJoinDropForm() {
 }
 
 /* ───────────────────────────────────────────────────────────────
+   COLLEGE PARTNERS — SCROLL FADE-IN
+   ─────────────────────────────────────────────────────────────── */
+function initCollegePartners() {
+  const cards = document.querySelectorAll('.cp-card');
+  if (!cards.length) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target); // fire only once
+      }
+    });
+  }, { threshold: 0.15 });
+
+  cards.forEach(card => observer.observe(card));
+}
+
+/* ───────────────────────────────────────────────────────────────
    INITIALIZE EVERYTHING
    ─────────────────────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
@@ -626,6 +645,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initReelsCarousel();
   initAboutAnimations();
   initJoinDropForm();
+  initCollegePartners();
 });
 
 window.addEventListener('load', () => {
