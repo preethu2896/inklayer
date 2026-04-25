@@ -2631,7 +2631,8 @@ input:checked + .slider:before {
   .about-overlay-gradient {
     background: linear-gradient(
       to bottom,
-      rgba(13, 13, 13, 0.1) 0%,
+      rgba(13, 13, 13, 0.95) 0%,
+      rgba(13, 13, 13, 0.1) 25%,
       rgba(13, 13, 13, 0.5) 60%,
       rgba(13, 13, 13, 1) 100%
     );
