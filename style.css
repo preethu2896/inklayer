@@ -3083,12 +3083,11 @@ input:checked + .slider:before {
   overflow: hidden;
 }
 
-/* Subtle radial glow */
 .college-partners::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(244, 98, 42, 0.06) 0%, transparent 70%);
+  background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(244, 98, 42, 0.05) 0%, transparent 65%);
   pointer-events: none;
   z-index: 0;
 }
@@ -3096,25 +3095,25 @@ input:checked + .slider:before {
 .cp-inner {
   position: relative;
   z-index: 1;
-  max-width: 1200px;
+  max-width: 1160px;
   margin: 0 auto;
 }
 
 /* ── Header ── */
 .cp-header {
   text-align: center;
-  margin-bottom: 64px;
+  margin-bottom: 72px;
 }
 
 .cp-eyebrow {
   display: inline-block;
   font-family: var(--font-sans);
   font-weight: 700;
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--primary-color);
-  margin-bottom: 16px;
+  margin-bottom: 18px;
   position: relative;
   padding: 0 20px;
 }
@@ -3128,14 +3127,14 @@ input:checked + .slider:before {
   width: 28px;
   height: 1px;
   background: var(--primary-color);
-  opacity: 0.6;
+  opacity: 0.5;
 }
 .cp-eyebrow::before { right: 100%; margin-right: -18px; }
-.cp-eyebrow::after  { left:  100%; margin-left:  -18px; }
+.cp-eyebrow::after  { left: 100%;  margin-left:  -18px; }
 
 .cp-title {
   font-family: var(--font-accent);
-  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--accent-cream);
@@ -3146,144 +3145,141 @@ input:checked + .slider:before {
 .cp-sub {
   font-family: var(--font-sans);
   font-weight: 300;
-  font-size: clamp(0.9rem, 1.4vw, 1.05rem);
-  color: rgba(255, 255, 255, 0.5);
-  line-height: 1.7;
-  max-width: 600px;
+  font-size: clamp(0.88rem, 1.3vw, 1rem);
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.75;
+  max-width: 580px;
   margin: 0 auto;
 }
 
-/* ── Cards grid ── */
-.cp-grid {
+/* ── Logo wall ── */
+.cp-logo-wall {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  gap: 24px;
 }
 
-.cp-card {
-  background: linear-gradient(145deg, #111 0%, #0d0d0d 100%);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 14px;
-  padding: 36px 24px 32px;
+/* Each item: frame + name + tag */
+.cp-logo-item {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 16px;
-  cursor: default;
-  transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              box-shadow 0.35s ease,
-              border-color 0.35s ease;
-  /* Scroll fade-in initial state */
+  gap: 18px;
+  /* scroll fade-in */
   opacity: 0;
-  transform: translateY(28px);
+  transform: translateY(24px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-.cp-card.visible {
+.cp-logo-item.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-.cp-card:hover {
-  transform: translateY(-6px) scale(1.02);
-  border-color: rgba(244, 98, 42, 0.22);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5),
-              0 0 0 1px rgba(244, 98, 42, 0.08);
-}
+/* Staggered delays */
+.cp-logo-item:nth-child(1) { transition-delay: 0s;    }
+.cp-logo-item:nth-child(2) { transition-delay: 0.1s;  }
+.cp-logo-item:nth-child(3) { transition-delay: 0.2s;  }
+.cp-logo-item:nth-child(4) { transition-delay: 0.3s;  }
 
-/* Icon wrapper */
-.cp-card-icon {
-  width: 56px;
-  height: 56px;
-  color: var(--primary-color);
-  flex-shrink: 0;
-  transition: transform 0.35s ease;
-}
-
-.cp-card:hover .cp-card-icon {
-  transform: scale(1.1) rotate(-4deg);
-}
-
-.cp-card-icon svg {
+/* ── Frame shared ── */
+.cp-logo-frame {
   width: 100%;
-  height: 100%;
-}
-
-/* Logo image (for colleges with actual logo files) */
-.cp-card-logo {
-  width: 100%;
-  height: 80px;
+  aspect-ratio: 3 / 2;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.35s ease;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              border-color 0.35s ease,
+              box-shadow 0.35s ease;
+  overflow: hidden;
 }
 
-.cp-card:hover .cp-card-logo {
-  transform: scale(1.06);
+.cp-logo-item:hover .cp-logo-frame {
+  transform: translateY(-5px);
+  border-color: rgba(244, 98, 42, 0.2);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45),
+              0 0 0 1px rgba(244, 98, 42, 0.06);
+}
+
+/* Real logo variant — light frosted background so dark logos show */
+.cp-logo-frame--img {
+  background: rgba(255, 255, 255, 0.96);
+  padding: 18px 20px;
 }
 
 .cp-logo-img {
-  max-height: 80px;
   max-width: 100%;
+  max-height: 100%;
   width: auto;
+  height: auto;
   object-fit: contain;
-  filter: brightness(0) invert(1) opacity(0.85);
-  transition: filter 0.35s ease, opacity 0.35s ease;
+  transition: transform 0.35s ease;
 }
 
-.cp-card:hover .cp-logo-img {
-  filter: brightness(0) invert(1) opacity(1) drop-shadow(0 0 8px rgba(244, 98, 42, 0.4));
+.cp-logo-item:hover .cp-logo-img {
+  transform: scale(1.05);
+}
+
+/* Monogram variant — dark tile with styled letters */
+.cp-logo-frame--mono {
+  background: linear-gradient(145deg, #141414 0%, #0e0e0e 100%);
+}
+
+.cp-mono-text {
+  font-family: var(--font-accent);
+  font-size: clamp(1.4rem, 2.8vw, 2rem);
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.12);
+  user-select: none;
+  transition: color 0.35s ease;
+}
+
+.cp-logo-item:hover .cp-mono-text {
+  color: rgba(244, 98, 42, 0.55);
 }
 
 /* College name */
-.cp-card-name {
+.cp-logo-name {
   font-family: var(--font-sans);
-  font-weight: 700;
-  font-size: 0.95rem;
-  color: rgba(255, 255, 255, 0.88);
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.75);
   line-height: 1.4;
   letter-spacing: 0.01em;
 }
 
-/* Partner tag */
-.cp-card-tag {
+/* Partner tag pill */
+.cp-logo-tag {
   font-family: var(--font-sans);
-  font-size: 0.65rem;
+  font-size: 0.6rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--primary-color);
-  background: rgba(244, 98, 42, 0.1);
-  border: 1px solid rgba(244, 98, 42, 0.2);
-  padding: 5px 14px;
+  background: rgba(244, 98, 42, 0.08);
+  border: 1px solid rgba(244, 98, 42, 0.18);
+  padding: 4px 12px;
   border-radius: 20px;
   white-space: nowrap;
 }
 
 /* ── Responsive ── */
 @media (max-width: 900px) {
-  .cp-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  .cp-logo-wall { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 480px) {
-  .college-partners {
-    padding: 80px 6%;
-  }
-  .cp-grid {
-    grid-template-columns: 1fr;
-    max-width: 360px;
-    margin: 0 auto;
+  .college-partners { padding: 80px 6%; }
+  .cp-logo-wall {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
   }
 }
 
-/* ── Staggered transition delays for scroll animation ── */
-.cp-card:nth-child(1) { transition-delay: 0s;    }
-.cp-card:nth-child(2) { transition-delay: 0.08s; }
-.cp-card:nth-child(3) { transition-delay: 0.16s; }
-.cp-card:nth-child(4) { transition-delay: 0.24s; }
 
 /* ───────────────────────────────────────────────────────────────
    TESTIMONIALS SECTION
