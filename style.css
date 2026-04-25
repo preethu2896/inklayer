@@ -97,11 +97,9 @@ button {
   padding: 0 4%;
   gap: 30px;
   height: 80px;
-  /* Premium glassmorphism base */
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 100%);
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-  border-bottom: none;
+  background: transparent;
+  border: none;
+  outline: none;
   transition:
     background 0.5s ease,
     backdrop-filter 0.5s ease,
@@ -111,14 +109,14 @@ button {
   will-change: transform, background, height;
 }
 
-/* ── Scrolled state: solid dark glass ── */
+/* ── Scrolled state: clean dark glass ── */
 .nav.scrolled {
-  background: rgba(10, 10, 10, 0.85);
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  border-bottom: none;
+  background: rgba(8, 8, 8, 0.88);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: none;
   box-shadow: none;
-  height: 70px;
+  height: 68px;
 }
 
 /* ── Hide on scroll down ── */
@@ -188,11 +186,11 @@ button {
 
 .nav-link {
   font-family: var(--font-sans);
-  font-weight: 500;
-  font-size: 0.85rem;
-  letter-spacing: 0.1em;
+  font-weight: 600;
+  font-size: 0.82rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.92);
   text-decoration: none;
   position: relative;
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -390,10 +388,10 @@ button {
   inset: 0;
   background: linear-gradient(
     to bottom,
-    rgba(0, 0, 0, 0.55) 0%,
-    rgba(0, 0, 0, 0.1) 40%,
-    rgba(0, 0, 0, 0.2) 60%,
-    rgba(0, 0, 0, 0.85) 100%
+    rgba(0, 0, 0, 0.35) 0%,
+    rgba(0, 0, 0, 0.05) 30%,
+    rgba(0, 0, 0, 0.05) 60%,
+    rgba(0, 0, 0, 0.55) 100%
   );
   z-index: 2;
 }
