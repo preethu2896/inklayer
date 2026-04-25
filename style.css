@@ -3639,8 +3639,7 @@ input:checked + .slider:before {
   font-size: 0.92rem;
   color: #ffffff;
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  overflow: visible;
   letter-spacing: 0.02em;
 }
 
@@ -3703,12 +3702,26 @@ input:checked + .slider:before {
 
 @media (max-width: 768px) {
   .t-card {
-    width: 300px;
+    width: 310px;
     padding: 24px;
+  }
+  .t-avatar {
+    width: 44px;
+    height: 44px;
+  }
+  .t-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 0.55rem;
+    padding: 3px 8px;
+  }
+  .t-username {
+    font-size: 0.88rem;
   }
   @keyframes scrollTestimonials {
     from { transform: translateX(0); }
-    to { transform: translateX(calc(-320px * 5)); }
+    to { transform: translateX(calc(-330px * 5)); }
   }
 }
 
