@@ -3015,7 +3015,7 @@ input:checked + .slider:before {
   position: relative;
   z-index: 10;
   background-color: var(--bg-color);
-  padding: 80px 0 20px 0;
+  padding: 100px 0 60px 0;
   overflow: hidden;
 }
 
@@ -3026,41 +3026,56 @@ input:checked + .slider:before {
   left: 50%;
   transform: translateX(-50%);
   width: 100vw;
-  height: 600px;
-  background: radial-gradient(ellipse at top, rgba(244, 98, 42, 0.04) 0%, transparent 60%);
+  height: 700px;
+  background: radial-gradient(ellipse at top, rgba(244, 98, 42, 0.08) 0%, transparent 65%);
   z-index: -1;
   pointer-events: none;
 }
 
 .testimonials-inner {
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 64px;
   padding: 0 5%;
 }
 
-.testimonials-title {
-  font-family: var(--font-accent);
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  letter-spacing: 0.05em;
+/* eyebrow line above title */
+.testimonials-inner::before {
+  content: "— VERIFIED BUYERS —";
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  color: var(--primary-color);
+  margin-bottom: 20px;
   text-transform: uppercase;
+}
+
+.testimonials-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 0.02em;
+  text-transform: none;
   color: var(--accent-cream);
-  line-height: 1.1;
+  line-height: 1.15;
 }
 
 .t-slider {
   width: 100%;
   overflow: hidden;
   position: relative;
-  mask-image: linear-gradient(to right, transparent, rgba(0,0,0,1) 5%, rgba(0,0,0,1) 95%, transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, rgba(0,0,0,1) 5%, rgba(0,0,0,1) 95%, transparent);
+  mask-image: linear-gradient(to right, transparent, rgba(0,0,0,1) 8%, rgba(0,0,0,1) 92%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, rgba(0,0,0,1) 8%, rgba(0,0,0,1) 92%, transparent);
 }
 
 .t-track {
   display: flex;
-  gap: 24px;
+  gap: 20px;
   width: max-content;
-  animation: scrollTestimonials 25s linear infinite;
-  padding: 0 10px;
+  animation: scrollTestimonials 30s linear infinite;
+  padding: 16px 10px 24px;
 }
 
 .t-track:hover {
@@ -3068,38 +3083,58 @@ input:checked + .slider:before {
 }
 
 .t-card {
-  width: 420px; /* Wider card to fit full usernames comfortably */
-  background: #0a0a0a; /* Ultra dark matte */
-  border-radius: 4px; /* Brutalist/Minimalist sharp edge */
-  padding: 40px;
+  width: 400px;
+  background: linear-gradient(135deg, #111111 0%, #0e0e0e 100%);
+  border-radius: 12px;
+  padding: 36px;
   flex-shrink: 0;
-  border: 1px solid #1c1c1c;
+  border: 1px solid rgba(255, 255, 255, 0.06);
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  gap: 20px;
   transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
   position: relative;
   overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
 }
 
-/* Faint background quote mark */
+/* Orange left accent bar */
+.t-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(to bottom, var(--primary-color), transparent);
+  border-radius: 12px 0 0 12px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+/* Faint oversized quote mark */
 .t-card::after {
   content: '"';
   position: absolute;
-  top: 25px;
-  right: 30px;
-  font-size: 7rem;
+  bottom: -10px;
+  right: 20px;
+  font-size: 8rem;
   font-family: var(--font-serif);
-  color: rgba(255, 255, 255, 0.02);
+  color: rgba(244, 98, 42, 0.04);
   line-height: 1;
   z-index: 0;
   pointer-events: none;
 }
 
 .t-card:hover {
-  transform: translateY(-4px);
-  background: #0f0f0f;
-  border-color: #2a2a2a;
+  transform: translateY(-6px);
+  background: linear-gradient(135deg, #161616 0%, #131313 100%);
+  border-color: rgba(244, 98, 42, 0.2);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(244, 98, 42, 0.08);
+}
+
+.t-card:hover::before {
+  opacity: 1;
 }
 
 .t-top, .t-stars, .t-review {
@@ -3110,14 +3145,14 @@ input:checked + .slider:before {
 .t-top {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 14px;
 }
 
 .t-avatar {
-  width: 46px;
-  height: 46px;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
-  background: transparent;
+  background: #1a1a1a;
   color: #fff;
   display: flex;
   align-items: center;
@@ -3126,14 +3161,15 @@ input:checked + .slider:before {
   font-size: 1.1rem;
   letter-spacing: 1px;
   flex-shrink: 0;
-  border: 1px solid #333;
-  overflow: hidden; /* Ensures the image doesn't break out of the circle! */
+  border: 2px solid rgba(244, 98, 42, 0.3);
+  overflow: hidden;
+  box-shadow: 0 0 0 4px rgba(244, 98, 42, 0.06);
 }
 
 .t-avatar img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Keeps image perfectly scaled without stretching */
+  object-fit: cover;
 }
 
 .t-meta {
@@ -3145,64 +3181,70 @@ input:checked + .slider:before {
 
 .t-username {
   font-family: var(--font-sans);
-  font-weight: 500;
-  font-size: 0.95rem;
-  color: #f5f5f5;
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: #ffffff;
   word-wrap: break-word;
   overflow-wrap: break-word;
   padding-right: 8px;
+  letter-spacing: 0.02em;
 }
 
 .t-location {
-  font-size: 0.75rem;
-  color: #666;
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.4);
   text-transform: capitalize;
-  margin-top: 2px;
+  margin-top: 3px;
   letter-spacing: 0.5px;
+  font-family: var(--font-sans);
 }
 
 .t-badge {
-  font-size: 0.55rem;
-  color: #888;
-  background: transparent;
-  border: 1px solid #333;
-  padding: 4px 8px;
-  border-radius: 2px; /* Brutalist edge */
+  font-size: 0.6rem;
+  color: var(--primary-color);
+  background: rgba(244, 98, 42, 0.1);
+  border: 1px solid rgba(244, 98, 42, 0.25);
+  padding: 4px 10px;
+  border-radius: 20px;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0.08em;
   white-space: nowrap;
-  font-weight: 600;
+  font-weight: 700;
   flex-shrink: 0;
+  font-family: var(--font-sans);
 }
 
 .t-stars {
   display: flex;
-  gap: 6px;
+  gap: 5px;
+  align-items: center;
 }
 
 .t-star-svg {
-  width: 14px;
-  height: 14px;
-  fill: #e5c158; /* Warm matte gold */
+  width: 15px;
+  height: 15px;
+  fill: #f5a623;
+  filter: drop-shadow(0 0 4px rgba(245, 166, 35, 0.4));
 }
 
 .t-star-svg.empty {
-  fill: #222; /* Dim, realistically unlit star base */
+  fill: rgba(255, 255, 255, 0.12);
+  filter: none;
 }
 
 .t-review {
   font-family: var(--font-serif);
-  font-size: 1.1rem;
-  color: #a3a3a3;
-  line-height: 1.7;
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.75;
   font-style: italic;
-  font-weight: 300;
-  letter-spacing: 0.3px;
+  font-weight: 400;
+  letter-spacing: 0.01em;
 }
 
 @keyframes scrollTestimonials {
   from { transform: translateX(0); }
-  to { transform: translateX(calc(-374px * 5)); }
+  to { transform: translateX(calc(-420px * 5)); }
 }
 
 @media (max-width: 768px) {
@@ -3212,7 +3254,7 @@ input:checked + .slider:before {
   }
   @keyframes scrollTestimonials {
     from { transform: translateX(0); }
-    to { transform: translateX(calc(-324px * 5)); }
+    to { transform: translateX(calc(-320px * 5)); }
   }
 }
 
