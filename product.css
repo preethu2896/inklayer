@@ -7,7 +7,7 @@ body {
 
 /* Breadcrumb */
 .breadcrumb {
-  padding: 120px 5% 20px;
+  padding: calc(var(--nav-height) + 40px) 5% 20px;
   font-family: 'DM Sans', sans-serif;
   font-size: 0.9rem;
   color: rgba(255, 255, 255, 0.5);
@@ -873,8 +873,12 @@ body {
     gap: 24px;
   }
   
+  .breadcrumb {
+    padding: calc(var(--nav-height-mobile) + 24px) 5% 16px;
+  }
+  
   .sticky-cta-info {
-    display: none; /* Hide product info on mobile, just show buttons */
+    display: none;
   }
   
   .sticky-cta-buttons {
@@ -897,5 +901,9 @@ body {
   
   .pm-buttons {
     flex-direction: column;
+  }
+
+  .breadcrumb {
+    padding: calc(var(--nav-height-mobile) + 16px) 5% 12px;
   }
 }

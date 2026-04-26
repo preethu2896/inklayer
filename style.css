@@ -18,6 +18,9 @@
   --font-sans: 'DM Sans', sans-serif;
   --font-accent: 'Bebas Neue', sans-serif;
   --nav-bg: rgba(0, 0, 0, 0.4);
+  /* Navbar height tokens — used by all pages to avoid overlap */
+  --nav-height: 80px;
+  --nav-height-mobile: 64px;
 }
 
 /* ───────────────────────────────────────────────────────────────
