@@ -80,6 +80,7 @@
         </div>
         <span class="pm-rating-score">4.8</span>
         <a href="#reviews" class="pm-reviews-link">(124 Reviews)</a>
+        <span class="pm-social-proof">· Trusted by 1000+ customers</span>
       </div>
 
       <div class="pm-price-row">
@@ -101,23 +102,27 @@
         Professional grade heavyweight fabric. Premium streetwear fit that resists wear and tear. Built to last with a structured drop-shoulder design. Perfect for everyday layering and statement fits.
       </p>
 
+      <div class="pm-selection-status" id="selection-status">
+        Selected: Black / M
+      </div>
+
       <div class="pm-shades">
         <span class="pm-section-label">SELECT SHADE</span>
         <div class="pm-color-options">
-          <div class="pm-color-ring active"><div class="pm-color" style="background: #111;"></div></div>
-          <div class="pm-color-ring"><div class="pm-color" style="background: #d4d4d4;"></div></div>
-          <div class="pm-color-ring"><div class="pm-color" style="background: #465362;"></div></div>
-          <div class="pm-color-ring"><div class="pm-color" style="background: #5d5045;"></div></div>
+          <div class="pm-color-ring active" data-color="Black"><div class="pm-color" style="background: #111;"></div></div>
+          <div class="pm-color-ring" data-color="Ash Grey"><div class="pm-color" style="background: #d4d4d4;"></div></div>
+          <div class="pm-color-ring" data-color="Navy"><div class="pm-color" style="background: #465362;"></div></div>
+          <div class="pm-color-ring" data-color="Mocha"><div class="pm-color" style="background: #5d5045;"></div></div>
         </div>
       </div>
 
       <div class="pm-size-selector">
         <span class="pm-section-label">SELECT SIZE</span>
         <div class="pm-size-options">
-          <button class="pm-size-btn">S</button>
-          <button class="pm-size-btn active">M</button>
-          <button class="pm-size-btn">L</button>
-          <button class="pm-size-btn">XL</button>
+          <button class="pm-size-btn" data-size="S">S</button>
+          <button class="pm-size-btn active" data-size="M">M</button>
+          <button class="pm-size-btn" data-size="L">L</button>
+          <button class="pm-size-btn" data-size="XL">XL</button>
         </div>
       </div>
 
@@ -148,26 +153,24 @@
 
       <div class="pm-features">
         <div class="pm-feature">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#ff5722" stroke-width="2">
-            <rect x="1" y="3" width="15" height="13"></rect>
-            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
-            <circle cx="5.5" cy="18.5" r="2.5"></circle>
-            <circle cx="18.5" cy="18.5" r="2.5"></circle>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+            <line x1="7" y1="7" x2="7.01" y2="7"></line>
           </svg>
-          <span>Free Shipping</span>
+          <span>Premium Fabric</span>
         </div>
         <div class="pm-feature">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#ff5722" stroke-width="2">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
           </svg>
-          <span>Guaranteed</span>
+          <span>Oversized Street Fit</span>
         </div>
         <div class="pm-feature">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#ff5722" stroke-width="2">
-            <polyline points="1 4 1 10 7 10"></polyline>
-            <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
           </svg>
-          <span>Easy Returns</span>
+          <span>Long Lasting Print</span>
         </div>
       </div>
 
@@ -340,12 +343,25 @@
       });
     });
 
+    // Dynamic Variant Text Update
+    const selectionStatus = document.getElementById('selection-status');
+    let selectedColor = 'Black';
+    let selectedSize = 'M';
+
+    function updateSelectionStatus() {
+      if(selectionStatus) {
+        selectionStatus.textContent = `Selected: ${selectedColor} / ${selectedSize}`;
+      }
+    }
+
     // Color selector
     const colorRings = document.querySelectorAll('.pm-color-ring');
     colorRings.forEach(ring => {
       ring.addEventListener('click', function() {
         colorRings.forEach(r => r.classList.remove('active'));
         this.classList.add('active');
+        selectedColor = this.getAttribute('data-color') || 'Black';
+        updateSelectionStatus();
       });
     });
 
@@ -355,6 +371,17 @@
       btn.addEventListener('click', function() {
         sizeBtns.forEach(b => b.classList.remove('active'));
         this.classList.add('active');
+        selectedSize = this.getAttribute('data-size') || 'M';
+        updateSelectionStatus();
+      });
+    });
+
+    // Buy Now Buttons
+    const buyNowBtns = document.querySelectorAll('.pm-buy-now');
+    buyNowBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Redirect to a placeholder checkout route
+        window.location.href = '/checkout.html';
       });
     });
 
