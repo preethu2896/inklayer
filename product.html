@@ -87,6 +87,15 @@
         <span class="pm-price-old">₹1999.00</span>
         <span class="pm-price-discount">25% OFF</span>
       </div>
+      
+      <div class="pm-urgency">
+        <span class="pm-badge-fire">🔥 Only few items left</span>
+        <span class="pm-badge-limited">25% OFF – Limited Drop</span>
+        <div class="pm-trust-row">
+          <span>✓ Free Delivery Available</span>
+          <span>✓ Easy Returns</span>
+        </div>
+      </div>
 
       <p class="pm-description">
         Professional grade heavyweight fabric. Premium streetwear fit that resists wear and tear. Built to last with a structured drop-shoulder design. Perfect for everyday layering and statement fits.
@@ -130,12 +139,10 @@
             <line x1="3" y1="6" x2="21" y2="6"></line>
             <path d="M16 10a4 4 0 0 1-8 0"></path>
           </svg>
-          Add to Cart — ₹1499.00
+          Add to Cart
         </button>
-        <button class="pm-wishlist" aria-label="Add to wishlist">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-          </svg>
+        <button class="pm-buy-now">
+          Buy Now
         </button>
       </div>
 
@@ -286,6 +293,23 @@
     </div>
   </footer>
 
+  <!-- STICKY CTA -->
+  <div class="sticky-cta-bar" id="sticky-cta">
+    <div class="sticky-cta-inner">
+      <div class="sticky-cta-info">
+        <img src="/assets/photo/bg1.png" alt="Premium Heavyweight Hoodie" class="sticky-cta-img" />
+        <div class="sticky-cta-text">
+          <h4 class="sticky-cta-title">Premium Heavyweight Hoodie</h4>
+          <span class="sticky-cta-price">₹1499.00</span>
+        </div>
+      </div>
+      <div class="sticky-cta-buttons">
+        <button class="pm-add-to-cart">Add to Cart</button>
+        <button class="pm-buy-now">Buy Now</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Scripts for interactivity -->
   <script type="module" src="./main.js"></script>
   <script>
@@ -347,6 +371,20 @@
         document.getElementById(targetId).style.display = 'block';
       });
     });
+
+    // Sticky CTA Visibility
+    const stickyCta = document.getElementById('sticky-cta');
+    const pmButtons = document.querySelector('.pm-buttons');
+    if (stickyCta && pmButtons) {
+      const observer = new IntersectionObserver((entries) => {
+        if (!entries[0].isIntersecting) {
+          stickyCta.classList.add('visible');
+        } else {
+          stickyCta.classList.remove('visible');
+        }
+      }, { threshold: 0, rootMargin: "-100px 0px 0px 0px" });
+      observer.observe(pmButtons);
+    }
   </script>
 </body>
 </html>
