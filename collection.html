@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" class="lenis">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inklayer — Collection</title>
+  <link rel="icon" type="image/x-icon" href="/assets/photo/logo.webp" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="./collection.css" />
+</head>
+
+<body>
+  <!-- NAVIGATION -->
+  <nav class="nav" id="main-nav">
+    <div class="nav-left">
+      <a href="/index.html#hero" class="nav-brand" id="nav-logo-link">
+        <img class="nav-logo-img" src="/assets/photo/logo1.png" alt="Inklayer Logo" />
+        <span class="nav-brand-name">Inklayer</span>
+      </a>
+    </div>
+    <div class="nav-center-links" id="nav-center-links">
+      <a href="/index.html#collections" class="nav-link">Collections</a>
+      <a href="/index.html#drops" class="nav-link">Drops</a>
+      <a href="/index.html#about" class="nav-link">About</a>
+      <a href="/index.html#bulk-orders" class="nav-link">Bulk Orders</a>
+      <a href="/index.html#join-drop" class="nav-link">Community</a>
+    </div>
+    <div class="nav-right">
+      <button class="nav-cta open-reserve-modal" id="nav-shop-btn">Shop Now</button>
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- COLLECTION HEADER -->
+  <header class="collection-page-header">
+    <div class="cph-left">
+      <h1 class="cph-title" id="page-collection-title">New Arrivals</h1>
+      <span class="cph-badge" id="page-collection-count">13</span>
+    </div>
+    <div class="cph-right">
+      <button class="cph-filter-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+        </svg>
+        Filters
+      </button>
+    </div>
+  </header>
+
+  <!-- PRODUCTS GRID -->
+  <main class="products-container">
+    <div class="products-grid" id="products-grid">
+      <!-- Product items will be injected here by JS, or hardcoded for now -->
+      
+      <a href="/product.html?id=1" class="product-item">
+        <div class="pi-image-wrapper">
+          <span class="pi-badge">BEST SELLER</span>
+          <img src="/assets/photo/bg1.png" alt="Premium Linen Summer Shirt" class="pi-img" />
+        </div>
+        <div class="pi-info">
+          <div class="pi-rating">
+            <div class="pi-stars">★★★★<span class="pi-star-empty">★</span></div>
+            <span class="pi-reviews">(124)</span>
+          </div>
+          <h3 class="pi-title">Premium Oversized Hoodie</h3>
+          <p class="pi-category">Clothing</p>
+          <div class="pi-price">₹1499.00</div>
+        </div>
+      </a>
+
+      <a href="/product.html?id=2" class="product-item">
+        <div class="pi-image-wrapper">
+          <img src="/assets/photo/ethos-bg.png" alt="Classic High-Waist Denim Jeans" class="pi-img" />
+        </div>
+        <div class="pi-info">
+          <div class="pi-rating">
+            <div class="pi-stars">★★★★<span class="pi-star-empty">★</span></div>
+            <span class="pi-reviews">(89)</span>
+          </div>
+          <h3 class="pi-title">Classic Streetwear Tee</h3>
+          <p class="pi-category">Clothing</p>
+          <div class="pi-price">₹899.00</div>
+        </div>
+      </a>
+
+      <a href="/product.html?id=3" class="product-item">
+        <div class="pi-image-wrapper">
+          <img src="/assets/photo/ethos-bg-rs.png" alt="Boho Floral Maxi Dress" class="pi-img" />
+        </div>
+        <div class="pi-info">
+          <div class="pi-rating">
+            <div class="pi-stars">★★★★<span class="pi-star-empty">★</span></div>
+            <span class="pi-reviews">(56)</span>
+          </div>
+          <h3 class="pi-title">Acid Drop Heavy Hoodie</h3>
+          <p class="pi-category">Clothing</p>
+          <div class="pi-price">₹1899.00</div>
+        </div>
+      </a>
+
+      <a href="/product.html?id=4" class="product-item">
+        <div class="pi-image-wrapper">
+          <img src="/assets/photo/z1.png" alt="Basic White Tee" class="pi-img" />
+        </div>
+        <div class="pi-info">
+          <div class="pi-rating">
+            <div class="pi-stars">★★★★<span class="pi-star-empty">★</span></div>
+            <span class="pi-reviews">(210)</span>
+          </div>
+          <h3 class="pi-title">Core Minimal T-Shirt</h3>
+          <p class="pi-category">Clothing</p>
+          <div class="pi-price">₹799.00</div>
+        </div>
+      </a>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer" id="footer">
+    <div class="site-footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <span class="footer-logo-text">INKLAYER</span>
+          <p class="footer-tagline">Built in layers. Worn with attitude.</p>
+        </div>
+        <nav class="footer-nav">
+          <a href="/index.html#collections" class="footer-nav-link">Collections</a>
+          <a href="/index.html#drops" class="footer-nav-link">Drops</a>
+          <a href="/index.html#about" class="footer-nav-link">About</a>
+        </nav>
+      </div>
+      <div class="footer-divider"></div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2026 Inklayer. All rights reserved.</p>
+        <p class="footer-made-in">Made with passion in Mangaluru, India.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="./main.js"></script>
+  <script>
+    // Simple script to update title based on category query param
+    const urlParams = new URLSearchParams(window.location.search);
+    const category = urlParams.get('category');
+    if (category) {
+      document.getElementById('page-collection-title').textContent = category.charAt(0).toUpperCase() + category.slice(1);
+    }
+  </script>
+</body>
+</html>

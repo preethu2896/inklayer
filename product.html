@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en" class="lenis">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Premium Product — Inklayer</title>
+  <link rel="icon" type="image/x-icon" href="/assets/photo/logo.webp" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="./product.css" />
+</head>
+
+<body>
+  <!-- NAVIGATION -->
+  <nav class="nav" id="main-nav">
+    <div class="nav-left">
+      <a href="/index.html#hero" class="nav-brand" id="nav-logo-link">
+        <img class="nav-logo-img" src="/assets/photo/logo1.png" alt="Inklayer Logo" />
+        <span class="nav-brand-name">Inklayer</span>
+      </a>
+    </div>
+    <div class="nav-center-links" id="nav-center-links">
+      <a href="/index.html#collections" class="nav-link">Collections</a>
+      <a href="/index.html#drops" class="nav-link">Drops</a>
+      <a href="/index.html#about" class="nav-link">About</a>
+      <a href="/index.html#bulk-orders" class="nav-link">Bulk Orders</a>
+      <a href="/index.html#join-drop" class="nav-link">Community</a>
+    </div>
+    <div class="nav-right">
+      <button class="nav-cta open-reserve-modal" id="nav-shop-btn">Shop Now</button>
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb">
+    <a href="/index.html">Home</a> &gt; 
+    <a href="/collection.html?category=clothing">Clothing</a> &gt; 
+    <span>Premium Heavyweight Hoodie</span>
+  </div>
+
+  <!-- PRODUCT DETAILS SECTION -->
+  <section class="product-main">
+    
+    <!-- LEFT: Images -->
+    <div class="pm-gallery">
+      <div class="pm-thumbnails">
+        <div class="pm-thumb active">
+          <img src="/assets/photo/bg1.png" alt="Thumb 1" />
+        </div>
+        <div class="pm-thumb">
+          <img src="/assets/photo/ethos-bg.png" alt="Thumb 2" />
+        </div>
+        <div class="pm-thumb">
+          <img src="/assets/photo/ethos-bg-rs.png" alt="Thumb 3" />
+        </div>
+        <div class="pm-thumb">
+          <img src="/assets/photo/z1.png" alt="Thumb 4" />
+        </div>
+      </div>
+      <div class="pm-main-image">
+        <img src="/assets/photo/bg1.png" alt="Premium Heavyweight Hoodie" id="main-product-img" />
+      </div>
+    </div>
+
+    <!-- RIGHT: Info -->
+    <div class="pm-info">
+      <h1 class="pm-title">Premium Heavyweight Hoodie</h1>
+      
+      <div class="pm-rating-row">
+        <div class="pm-stars">
+          ★★★★<span class="pm-star-half">★</span>
+        </div>
+        <span class="pm-rating-score">4.8</span>
+        <a href="#reviews" class="pm-reviews-link">(124 Reviews)</a>
+      </div>
+
+      <div class="pm-price-row">
+        <span class="pm-price-current">₹1499.00</span>
+        <span class="pm-price-old">₹1999.00</span>
+        <span class="pm-price-discount">25% OFF</span>
+      </div>
+
+      <p class="pm-description">
+        Professional grade heavyweight fabric. Premium streetwear fit that resists wear and tear. Built to last with a structured drop-shoulder design. Perfect for everyday layering and statement fits.
+      </p>
+
+      <div class="pm-shades">
+        <span class="pm-section-label">SELECT SHADE</span>
+        <div class="pm-color-options">
+          <div class="pm-color-ring active"><div class="pm-color" style="background: #111;"></div></div>
+          <div class="pm-color-ring"><div class="pm-color" style="background: #d4d4d4;"></div></div>
+          <div class="pm-color-ring"><div class="pm-color" style="background: #465362;"></div></div>
+          <div class="pm-color-ring"><div class="pm-color" style="background: #5d5045;"></div></div>
+        </div>
+      </div>
+
+      <div class="pm-size-selector">
+        <span class="pm-section-label">SELECT SIZE</span>
+        <div class="pm-size-options">
+          <button class="pm-size-btn">S</button>
+          <button class="pm-size-btn active">M</button>
+          <button class="pm-size-btn">L</button>
+          <button class="pm-size-btn">XL</button>
+        </div>
+      </div>
+
+      <div class="pm-actions">
+        <div class="pm-quantity">
+          <span class="pm-qty-label">Quantity</span>
+          <div class="pm-qty-controls">
+            <button class="pm-qty-btn" id="qty-minus">−</button>
+            <span class="pm-qty-value" id="qty-val">1</span>
+            <button class="pm-qty-btn" id="qty-plus">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="pm-buttons">
+        <button class="pm-add-to-cart">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          Add to Cart — ₹1499.00
+        </button>
+        <button class="pm-wishlist" aria-label="Add to wishlist">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+          </svg>
+        </button>
+      </div>
+
+      <div class="pm-features">
+        <div class="pm-feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#ff5722" stroke-width="2">
+            <rect x="1" y="3" width="15" height="13"></rect>
+            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+            <circle cx="5.5" cy="18.5" r="2.5"></circle>
+            <circle cx="18.5" cy="18.5" r="2.5"></circle>
+          </svg>
+          <span>Free Shipping</span>
+        </div>
+        <div class="pm-feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#ff5722" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+          <span>Guaranteed</span>
+        </div>
+        <div class="pm-feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#ff5722" stroke-width="2">
+            <polyline points="1 4 1 10 7 10"></polyline>
+            <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+          </svg>
+          <span>Easy Returns</span>
+        </div>
+      </div>
+
+      <div class="pm-tabs">
+        <div class="pm-tab-headers">
+          <button class="pm-tab-btn active" data-target="tab-details">Details</button>
+          <button class="pm-tab-btn" data-target="tab-shipping">Shipping</button>
+          <button class="pm-tab-btn" data-target="tab-returns">Returns</button>
+        </div>
+        <div class="pm-tab-content">
+          <div class="pm-tab-pane active" id="tab-details">
+            <p>A high-gloss, long-lasting heavy streetwear piece inspired by urban silhouettes.</p>
+            <ul>
+              <li>Heavyweight 100% Cotton fabric</li>
+              <li>Drop shoulder oversized fit</li>
+              <li>Pre-shrunk to minimize shrinkage</li>
+              <li>Machine wash cold, hang dry</li>
+            </ul>
+          </div>
+          <div class="pm-tab-pane" id="tab-shipping" style="display: none;">
+            <p>Free standard shipping on all orders above ₹999.</p>
+            <ul>
+              <li>Standard Shipping: 5-7 business days</li>
+              <li>Express Shipping: 2-3 business days</li>
+            </ul>
+          </div>
+          <div class="pm-tab-pane" id="tab-returns" style="display: none;">
+            <p>We offer easy 7-day returns for unused products with original tags attached.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- REVIEWS SECTION -->
+  <section class="reviews-section" id="reviews">
+    <div class="reviews-header">
+      <div class="rh-left">
+        <h2 class="rh-title">Customer Reviews</h2>
+        <div class="rh-rating">
+          <div class="pm-stars">★★★★★</div>
+          <span class="rh-score">4.9</span>
+          <span class="rh-count">(127 reviews)</span>
+        </div>
+      </div>
+      <div class="rh-right">
+        <button class="write-review-btn">Write a Review</button>
+      </div>
+    </div>
+
+    <div class="reviews-list">
+      
+      <!-- Review 1 -->
+      <div class="review-card">
+        <div class="rc-header">
+          <h4 class="rc-name">Sarah M. <span class="rc-verified">✓ Verified Purchase</span></h4>
+          <span class="rc-date">2 weeks ago</span>
+        </div>
+        <div class="pm-stars rc-stars">★★★★★</div>
+        <h5 class="rc-title">Absolutely love this!</h5>
+        <p class="rc-text">The fabric is even better in person! Fits perfectly oversized. Will definitely buy more colors.</p>
+        <button class="rc-helpful">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg>
+          Helpful (24)
+        </button>
+      </div>
+
+      <!-- Review 2 -->
+      <div class="review-card">
+        <div class="rc-header">
+          <h4 class="rc-name">Emily R. <span class="rc-verified">✓ Verified Purchase</span></h4>
+          <span class="rc-date">1 month ago</span>
+        </div>
+        <div class="pm-stars rc-stars">★★★★★</div>
+        <h5 class="rc-title">Premium quality</h5>
+        <p class="rc-text">I've tried many streetwear brands and this is by far the best. Easy to style and the finish is so clean!</p>
+        <button class="rc-helpful">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg>
+          Helpful (18)
+        </button>
+      </div>
+
+      <!-- Review 3 -->
+      <div class="review-card">
+        <div class="rc-header">
+          <h4 class="rc-name">Jessica L. <span class="rc-verified">✓ Verified Purchase</span></h4>
+          <span class="rc-date">1 month ago</span>
+        </div>
+        <div class="pm-stars rc-stars">★★★★<span class="pm-star-empty">★</span></div>
+        <h5 class="rc-title">Great product, fast shipping</h5>
+        <p class="rc-text">Beautiful shade and great quality. Only wish they restocked faster.</p>
+        <button class="rc-helpful">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg>
+          Helpful (12)
+        </button>
+      </div>
+
+    </div>
+
+    <button class="load-more-reviews">Load More Reviews</button>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer" id="footer">
+    <div class="site-footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <span class="footer-logo-text">INKLAYER</span>
+          <p class="footer-tagline">Built in layers. Worn with attitude.</p>
+        </div>
+        <nav class="footer-nav">
+          <a href="/index.html#collections" class="footer-nav-link">Collections</a>
+          <a href="/index.html#drops" class="footer-nav-link">Drops</a>
+          <a href="/index.html#about" class="footer-nav-link">About</a>
+        </nav>
+      </div>
+      <div class="footer-divider"></div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2026 Inklayer. All rights reserved.</p>
+        <p class="footer-made-in">Made with passion in Mangaluru, India.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts for interactivity -->
+  <script type="module" src="./main.js"></script>
+  <script>
+    // Quantity controls
+    const qtyMinus = document.getElementById('qty-minus');
+    const qtyPlus = document.getElementById('qty-plus');
+    const qtyVal = document.getElementById('qty-val');
+
+    qtyMinus.addEventListener('click', () => {
+      let val = parseInt(qtyVal.textContent);
+      if(val > 1) qtyVal.textContent = val - 1;
+    });
+
+    qtyPlus.addEventListener('click', () => {
+      let val = parseInt(qtyVal.textContent);
+      qtyVal.textContent = val + 1;
+    });
+
+    // Thumbnails click
+    const thumbs = document.querySelectorAll('.pm-thumb');
+    const mainImg = document.getElementById('main-product-img');
+    thumbs.forEach(thumb => {
+      thumb.addEventListener('click', function() {
+        thumbs.forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+        const src = this.querySelector('img').src;
+        mainImg.src = src;
+      });
+    });
+
+    // Color selector
+    const colorRings = document.querySelectorAll('.pm-color-ring');
+    colorRings.forEach(ring => {
+      ring.addEventListener('click', function() {
+        colorRings.forEach(r => r.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+
+    // Size selector
+    const sizeBtns = document.querySelectorAll('.pm-size-btn');
+    sizeBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+        sizeBtns.forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+
+    // Tabs
+    const tabBtns = document.querySelectorAll('.pm-tab-btn');
+    const tabPanes = document.querySelectorAll('.pm-tab-pane');
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+        tabBtns.forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        
+        tabPanes.forEach(pane => pane.style.display = 'none');
+        const targetId = this.getAttribute('data-target');
+        document.getElementById(targetId).style.display = 'block';
+      });
+    });
+  </script>
+</body>
+</html>
