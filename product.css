@@ -33,7 +33,7 @@ body {
 .product-main {
   padding: 20px 5% 60px;
   display: flex;
-  gap: 60px;
+  gap: 80px;
   background: transparent;
   align-items: flex-start;
   animation: fadeIn 0.6s ease-out;
@@ -46,10 +46,10 @@ body {
 
 /* Left: Images */
 .pm-gallery {
-  flex: 1.2;
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 24px;
   position: sticky;
   top: 100px;
 }
@@ -126,12 +126,12 @@ body {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 28px;
 }
 
 .pm-title {
   font-family: 'DM Sans', sans-serif;
-  font-size: 2.8rem;
+  font-size: 3rem;
   font-weight: 700;
   color: var(--text-color, #ffffff);
   margin: 0;
@@ -399,8 +399,8 @@ body {
 /* Buttons */
 .pm-buttons {
   display: flex;
-  gap: 15px;
-  margin-top: 10px;
+  gap: 16px;
+  margin-top: 20px;
 }
 
 .pm-add-to-cart {
@@ -409,21 +409,23 @@ body {
   color: var(--text-color, #ffffff);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 8px;
-  padding: 18px;
+  padding: 20px 24px;
   font-family: 'DM Sans', sans-serif;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 12px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .pm-add-to-cart:hover {
   background: rgba(255, 255, 255, 0.1);
   transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
 .pm-add-to-cart:active {
@@ -431,8 +433,8 @@ body {
 }
 
 .pm-add-to-cart svg {
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
 }
 
 .pm-buy-now {
@@ -441,9 +443,9 @@ body {
   color: #000;
   border: none;
   border-radius: 8px;
-  padding: 18px;
+  padding: 20px 24px;
   font-family: 'DM Sans', sans-serif;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   font-weight: 700;
   display: flex;
   align-items: center;
@@ -451,13 +453,13 @@ body {
   gap: 12px;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  box-shadow: 0 4px 15px rgba(244, 98, 42, 0.3);
+  box-shadow: 0 6px 20px rgba(244, 98, 42, 0.4);
 }
 
 .pm-buy-now:hover {
   background: #ff7846;
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(244, 98, 42, 0.5);
+  box-shadow: 0 10px 30px rgba(244, 98, 42, 0.6);
 }
 
 .pm-buy-now:active {
