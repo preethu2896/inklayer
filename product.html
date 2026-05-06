@@ -101,7 +101,13 @@
       </div>
 
       <div class="pm-size-selector">
-        <span class="pm-section-label">SELECT SIZE</span>
+        <div class="pm-size-selector-header">
+          <span class="pm-section-label">SELECT SIZE</span>
+          <button class="pm-size-guide-btn" id="pm-size-guide-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            Size Guide
+          </button>
+        </div>
         <div class="pm-size-options">
           <button class="pm-size-btn" data-size="S">S</button>
           <button class="pm-size-btn active" data-size="M">M</button>
@@ -129,6 +135,11 @@
             <path d="M16 10a4 4 0 0 1-8 0"></path>
           </svg>
           Add to Cart
+        </button>
+        <button class="pm-wishlist-btn" id="pm-wishlist-btn" aria-label="Add to wishlist">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+          </svg>
         </button>
         <button class="pm-buy-now">
           Buy Now
@@ -258,6 +269,46 @@
     <button class="load-more-reviews">Load More Reviews</button>
   </section>
 
+  <!-- RELATED PRODUCTS -->
+  <section class="related-section">
+    <div class="related-header">
+      <h2 class="related-title">You May Also Like</h2>
+      <a href="/collection.html" class="related-view-all">View All →</a>
+    </div>
+    <div class="related-grid">
+      <a href="/product.html?id=2" class="related-card">
+        <div class="related-img-wrap">
+          <img src="/assets/photo/ethos-bg.png" alt="Classic Streetwear Tee" class="related-img" />
+          <div class="related-overlay">View Product</div>
+        </div>
+        <div class="related-info">
+          <h4 class="related-name">Classic Streetwear Tee</h4>
+          <span class="related-price">₹899.00</span>
+        </div>
+      </a>
+      <a href="/product.html?id=3" class="related-card">
+        <div class="related-img-wrap">
+          <img src="/assets/photo/ethos-bg-rs.png" alt="Acid Drop Heavy Hoodie" class="related-img" />
+          <div class="related-overlay">View Product</div>
+        </div>
+        <div class="related-info">
+          <h4 class="related-name">Acid Drop Heavy Hoodie</h4>
+          <span class="related-price">₹1,899.00</span>
+        </div>
+      </a>
+      <a href="/product.html?id=4" class="related-card">
+        <div class="related-img-wrap">
+          <img src="/assets/photo/z1.png" alt="Core Minimal T-Shirt" class="related-img" />
+          <div class="related-overlay">View Product</div>
+        </div>
+        <div class="related-info">
+          <h4 class="related-name">Core Minimal T-Shirt</h4>
+          <span class="related-price">₹799.00</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
   <!-- FOOTER -->
   <footer class="site-footer" id="footer">
     <div class="site-footer-inner">
@@ -382,6 +433,16 @@
         document.getElementById(targetId).style.display = 'block';
       });
     });
+
+    // Wishlist toggle
+    const wishlistBtn = document.getElementById('pm-wishlist-btn');
+    if (wishlistBtn) {
+      wishlistBtn.addEventListener('click', () => {
+        wishlistBtn.classList.toggle('wishlisted');
+        const isWishlisted = wishlistBtn.classList.contains('wishlisted');
+        wishlistBtn.setAttribute('aria-label', isWishlisted ? 'Remove from wishlist' : 'Add to wishlist');
+      });
+    }
 
     // Sticky CTA Visibility
     const stickyCta = document.getElementById('sticky-cta');

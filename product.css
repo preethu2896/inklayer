@@ -374,6 +374,40 @@ body {
   box-shadow: 0 0 15px rgba(244, 98, 42, 0.2);
 }
 
+/* Size Selector Header */
+.pm-size-selector-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.pm-size-selector-header .pm-section-label {
+  margin-bottom: 0;
+}
+
+.pm-size-guide-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.45);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.pm-size-guide-btn svg {
+  width: 14px;
+  height: 14px;
+}
+.pm-size-guide-btn:hover {
+  color: var(--primary-color, #F4622A);
+}
+
 /* Quantity */
 .pm-actions {
   padding-top: 10px;
@@ -430,8 +464,44 @@ body {
 /* Buttons */
 .pm-buttons {
   display: flex;
-  gap: 16px;
+  gap: 12px;
   margin-top: 20px;
+  align-items: stretch;
+}
+
+/* Wishlist Button */
+.pm-wishlist-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 58px;
+  flex-shrink: 0;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.pm-wishlist-btn svg {
+  width: 22px;
+  height: 22px;
+  transition: all 0.3s ease;
+}
+.pm-wishlist-btn:hover {
+  border-color: #ff4d6d;
+  color: #ff4d6d;
+  background: rgba(255, 77, 109, 0.06);
+  transform: scale(1.05);
+}
+.pm-wishlist-btn.wishlisted {
+  border-color: #ff4d6d;
+  background: rgba(255, 77, 109, 0.1);
+  color: #ff4d6d;
+}
+.pm-wishlist-btn.wishlisted svg {
+  fill: #ff4d6d;
+  stroke: #ff4d6d;
 }
 
 .pm-add-to-cart {
@@ -905,7 +975,7 @@ body {
   }
   
   .breadcrumb {
-    padding: calc(var(--nav-height-mobile) + 24px) 5% 16px;
+    padding: 24px 5% 16px;
   }
   
   .sticky-cta-info {
@@ -926,6 +996,125 @@ body {
     flex-direction: column;
   }
   
+/* RELATED PRODUCTS */
+.related-section {
+  padding: 80px 5% 100px;
+  background: var(--bg-color, #0D0D0D);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.related-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.related-title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text-color, #ffffff);
+  margin: 0;
+}
+
+.related-view-all {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--primary-color, #F4622A);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  transition: opacity 0.3s ease;
+}
+.related-view-all:hover { opacity: 0.75; }
+
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.related-card {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  border-radius: 10px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.related-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+}
+
+.related-img-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/5;
+  overflow: hidden;
+  background: #151515;
+}
+.related-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+  filter: brightness(0.85);
+}
+.related-card:hover .related-img {
+  transform: scale(1.07);
+  filter: brightness(1);
+}
+.related-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.2em;
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  backdrop-filter: blur(2px);
+}
+.related-card:hover .related-overlay { opacity: 1; }
+
+.related-info {
+  padding: 18px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.related-name {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-color, #ffffff);
+  margin: 0;
+  transition: color 0.3s ease;
+}
+.related-card:hover .related-name { color: var(--primary-color, #F4622A); }
+.related-price {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--accent-cream, #F5ECD7);
+}
+
+@media (max-width: 768px) {
+  .related-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  .related-grid { grid-template-columns: 1fr; }
+}
+
   .pm-title {
     font-size: 2.2rem;
   }

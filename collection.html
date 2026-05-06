@@ -27,9 +27,15 @@
         </svg>
       </button>
       <h1 class="cph-title" id="page-collection-title">New Arrivals</h1>
-      <span class="cph-badge" id="page-collection-count">13</span>
+      <span class="cph-badge" id="page-collection-count">4</span>
     </div>
     <div class="cph-right">
+      <select class="cph-sort-select" id="cph-sort">
+        <option value="default">Sort: Featured</option>
+        <option value="price-asc">Price: Low to High</option>
+        <option value="price-desc">Price: High to Low</option>
+        <option value="newest">Newest First</option>
+      </select>
       <button class="cph-filter-btn">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
@@ -39,15 +45,27 @@
     </div>
   </header>
 
+  <!-- FILTER PILLS -->
+  <div class="cph-filter-pills" id="cph-filter-pills">
+    <button class="cph-pill active" data-filter="all">All</button>
+    <button class="cph-pill" data-filter="hoodies">Hoodies</button>
+    <button class="cph-pill" data-filter="tees">Tees</button>
+    <button class="cph-pill" data-filter="shorts">Shorts</button>
+    <button class="cph-pill" data-filter="jackets">Jackets</button>
+  </div>
+
   <!-- PRODUCTS GRID -->
   <main class="products-container">
     <div class="products-grid" id="products-grid">
       <!-- Product items will be injected here by JS, or hardcoded for now -->
       
-      <a href="/product.html?id=1" class="product-item">
+      <a href="/product.html?id=1" class="product-item" data-category="hoodies">
         <div class="pi-image-wrapper">
           <span class="pi-badge">BEST SELLER</span>
-          <img src="/assets/photo/bg1.png" alt="Premium Linen Summer Shirt" class="pi-img" />
+          <img src="/assets/photo/bg1.png" alt="Premium Oversized Hoodie" class="pi-img" />
+          <div class="pi-quick-view">
+            <span>Quick View</span>
+          </div>
         </div>
         <div class="pi-info">
           <div class="pi-rating">
@@ -60,9 +78,12 @@
         </div>
       </a>
 
-      <a href="/product.html?id=2" class="product-item">
+      <a href="/product.html?id=2" class="product-item" data-category="tees">
         <div class="pi-image-wrapper">
-          <img src="/assets/photo/ethos-bg.png" alt="Classic High-Waist Denim Jeans" class="pi-img" />
+          <img src="/assets/photo/ethos-bg.png" alt="Classic Streetwear Tee" class="pi-img" />
+          <div class="pi-quick-view">
+            <span>Quick View</span>
+          </div>
         </div>
         <div class="pi-info">
           <div class="pi-rating">
@@ -75,9 +96,12 @@
         </div>
       </a>
 
-      <a href="/product.html?id=3" class="product-item">
+      <a href="/product.html?id=3" class="product-item" data-category="hoodies">
         <div class="pi-image-wrapper">
-          <img src="/assets/photo/ethos-bg-rs.png" alt="Boho Floral Maxi Dress" class="pi-img" />
+          <img src="/assets/photo/ethos-bg-rs.png" alt="Acid Drop Heavy Hoodie" class="pi-img" />
+          <div class="pi-quick-view">
+            <span>Quick View</span>
+          </div>
         </div>
         <div class="pi-info">
           <div class="pi-rating">
@@ -90,9 +114,12 @@
         </div>
       </a>
 
-      <a href="/product.html?id=4" class="product-item">
+      <a href="/product.html?id=4" class="product-item" data-category="tees">
         <div class="pi-image-wrapper">
-          <img src="/assets/photo/z1.png" alt="Basic White Tee" class="pi-img" />
+          <img src="/assets/photo/z1.png" alt="Core Minimal T-Shirt" class="pi-img" />
+          <div class="pi-quick-view">
+            <span>Quick View</span>
+          </div>
         </div>
         <div class="pi-info">
           <div class="pi-rating">
@@ -132,12 +159,44 @@
 
   <script type="module" src="./main.js"></script>
   <script>
-    // Simple script to update title based on category query param
+    // Update title from query param
     const urlParams = new URLSearchParams(window.location.search);
     const category = urlParams.get('category');
     if (category) {
-      document.getElementById('page-collection-title').textContent = category.charAt(0).toUpperCase() + category.slice(1);
+      document.getElementById('page-collection-title').textContent =
+        category.charAt(0).toUpperCase() + category.slice(1);
     }
+
+    // Filter pills
+    const pills = document.querySelectorAll('.cph-pill');
+    const items = document.querySelectorAll('.product-item');
+    pills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        pills.forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        const filter = pill.dataset.filter;
+        items.forEach(item => {
+          if (filter === 'all' || item.dataset.category === filter) {
+            item.style.display = '';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+        // Update count
+        const visible = [...items].filter(i => i.style.display !== 'none').length;
+        document.getElementById('page-collection-count').textContent = visible;
+      });
+    });
+
+    // Quick view — prevent link navigation
+    document.querySelectorAll('.pi-quick-view').forEach(qv => {
+      qv.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const href = qv.closest('.product-item').href;
+        window.location.href = href;
+      });
+    });
   </script>
 </body>
 </html>
