@@ -4,19 +4,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Inklayer — Collection</title>
+  <title id="page-title">Inklayer — Collection</title>
+  <meta name="description" content="Shop Inklayer's premium streetwear collections — hoodies, tees, shorts and more." />
   <link rel="icon" type="image/x-icon" href="/assets/photo/logo.webp" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap"
-    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="./style.css" />
   <link rel="stylesheet" href="./collection.css" />
 </head>
 
 <body>
-
 
   <!-- COLLECTION HEADER -->
   <header class="collection-page-header">
@@ -26,22 +24,18 @@
           <polyline points="15 18 9 12 15 6"></polyline>
         </svg>
       </button>
-      <h1 class="cph-title" id="page-collection-title">New Arrivals</h1>
-      <span class="cph-badge" id="page-collection-count">4</span>
+      <div class="cph-title-block">
+        <h1 class="cph-title" id="page-collection-title">All Products</h1>
+        <span class="cph-badge" id="page-collection-count">8</span>
+      </div>
     </div>
     <div class="cph-right">
       <select class="cph-sort-select" id="cph-sort">
         <option value="default">Sort: Featured</option>
         <option value="price-asc">Price: Low to High</option>
         <option value="price-desc">Price: High to Low</option>
-        <option value="newest">Newest First</option>
+        <option value="rating">Top Rated</option>
       </select>
-      <button class="cph-filter-btn">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
-        </svg>
-        Filters
-      </button>
     </div>
   </header>
 
@@ -57,15 +51,13 @@
   <!-- PRODUCTS GRID -->
   <main class="products-container">
     <div class="products-grid" id="products-grid">
-      <!-- Product items will be injected here by JS, or hardcoded for now -->
-      
-      <a href="/product.html?id=1" class="product-item" data-category="hoodies">
+
+      <!-- HOODIES -->
+      <a href="/product.html?id=1" class="product-item" data-category="hoodies" data-price="1499" data-rating="4.8">
         <div class="pi-image-wrapper">
           <span class="pi-badge">BEST SELLER</span>
-          <img src="/assets/photo/bg1.png" alt="Premium Oversized Hoodie" class="pi-img" />
-          <div class="pi-quick-view">
-            <span>Quick View</span>
-          </div>
+          <img src="/assets/photo/bg1.png" alt="Premium Oversized Hoodie" class="pi-img" loading="lazy" />
+          <div class="pi-quick-view"><span>Quick View</span></div>
         </div>
         <div class="pi-info">
           <div class="pi-rating">
@@ -73,35 +65,20 @@
             <span class="pi-reviews">(124)</span>
           </div>
           <h3 class="pi-title">Premium Oversized Hoodie</h3>
-          <p class="pi-category">Clothing</p>
-          <div class="pi-price">₹1499.00</div>
+          <p class="pi-category">Hoodies</p>
+          <div class="pi-price-row">
+            <div class="pi-price">₹1,499</div>
+            <div class="pi-old-price">₹1,999</div>
+            <span class="pi-discount">25% OFF</span>
+          </div>
         </div>
       </a>
 
-      <a href="/product.html?id=2" class="product-item" data-category="tees">
+      <a href="/product.html?id=3" class="product-item" data-category="hoodies" data-price="1899" data-rating="4.5">
         <div class="pi-image-wrapper">
-          <img src="/assets/photo/ethos-bg.png" alt="Classic Streetwear Tee" class="pi-img" />
-          <div class="pi-quick-view">
-            <span>Quick View</span>
-          </div>
-        </div>
-        <div class="pi-info">
-          <div class="pi-rating">
-            <div class="pi-stars">★★★★<span class="pi-star-empty">★</span></div>
-            <span class="pi-reviews">(89)</span>
-          </div>
-          <h3 class="pi-title">Classic Streetwear Tee</h3>
-          <p class="pi-category">Clothing</p>
-          <div class="pi-price">₹899.00</div>
-        </div>
-      </a>
-
-      <a href="/product.html?id=3" class="product-item" data-category="hoodies">
-        <div class="pi-image-wrapper">
-          <img src="/assets/photo/ethos-bg-rs.png" alt="Acid Drop Heavy Hoodie" class="pi-img" />
-          <div class="pi-quick-view">
-            <span>Quick View</span>
-          </div>
+          <span class="pi-badge pi-badge-new">NEW DROP</span>
+          <img src="/assets/photo/ethos-bg-rs.png" alt="Acid Drop Heavy Hoodie" class="pi-img" loading="lazy" />
+          <div class="pi-quick-view"><span>Quick View</span></div>
         </div>
         <div class="pi-info">
           <div class="pi-rating">
@@ -109,29 +86,137 @@
             <span class="pi-reviews">(56)</span>
           </div>
           <h3 class="pi-title">Acid Drop Heavy Hoodie</h3>
-          <p class="pi-category">Clothing</p>
-          <div class="pi-price">₹1899.00</div>
+          <p class="pi-category">Hoodies</p>
+          <div class="pi-price-row">
+            <div class="pi-price">₹1,899</div>
+          </div>
         </div>
       </a>
 
-      <a href="/product.html?id=4" class="product-item" data-category="tees">
+      <!-- TEES -->
+      <a href="/product.html?id=2" class="product-item" data-category="tees" data-price="899" data-rating="4.6">
         <div class="pi-image-wrapper">
-          <img src="/assets/photo/z1.png" alt="Core Minimal T-Shirt" class="pi-img" />
-          <div class="pi-quick-view">
-            <span>Quick View</span>
-          </div>
+          <img src="/assets/photo/ethos-bg.png" alt="Classic Streetwear Tee" class="pi-img" loading="lazy" />
+          <div class="pi-quick-view"><span>Quick View</span></div>
         </div>
         <div class="pi-info">
           <div class="pi-rating">
             <div class="pi-stars">★★★★<span class="pi-star-empty">★</span></div>
-            <span class="pi-reviews">(210)</span>
+            <span class="pi-reviews">(89)</span>
           </div>
-          <h3 class="pi-title">Core Minimal T-Shirt</h3>
-          <p class="pi-category">Clothing</p>
-          <div class="pi-price">₹799.00</div>
+          <h3 class="pi-title">Classic Streetwear Tee</h3>
+          <p class="pi-category">Tees</p>
+          <div class="pi-price-row">
+            <div class="pi-price">₹899</div>
+          </div>
         </div>
       </a>
 
+      <a href="/product.html?id=4" class="product-item" data-category="tees" data-price="799" data-rating="4.9">
+        <div class="pi-image-wrapper">
+          <span class="pi-badge pi-badge-top">TOP RATED</span>
+          <img src="/assets/photo/z1.png" alt="Core Minimal T-Shirt" class="pi-img" loading="lazy" />
+          <div class="pi-quick-view"><span>Quick View</span></div>
+        </div>
+        <div class="pi-info">
+          <div class="pi-rating">
+            <div class="pi-stars">★★★★★</div>
+            <span class="pi-reviews">(210)</span>
+          </div>
+          <h3 class="pi-title">Core Minimal T-Shirt</h3>
+          <p class="pi-category">Tees</p>
+          <div class="pi-price-row">
+            <div class="pi-price">₹799</div>
+            <div class="pi-old-price">₹999</div>
+            <span class="pi-discount">20% OFF</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- SHORTS -->
+      <a href="/product.html?id=5" class="product-item" data-category="shorts" data-price="699" data-rating="4.4">
+        <div class="pi-image-wrapper">
+          <img src="/assets/photo/bg1.png" alt="Urban Cargo Shorts" class="pi-img" loading="lazy" />
+          <div class="pi-quick-view"><span>Quick View</span></div>
+        </div>
+        <div class="pi-info">
+          <div class="pi-rating">
+            <div class="pi-stars">★★★★<span class="pi-star-empty">★</span></div>
+            <span class="pi-reviews">(43)</span>
+          </div>
+          <h3 class="pi-title">Urban Cargo Shorts</h3>
+          <p class="pi-category">Shorts</p>
+          <div class="pi-price-row">
+            <div class="pi-price">₹699</div>
+          </div>
+        </div>
+      </a>
+
+      <a href="/product.html?id=6" class="product-item" data-category="shorts" data-price="849" data-rating="4.3">
+        <div class="pi-image-wrapper">
+          <img src="/assets/photo/ethos-bg.png" alt="Athletic Fleece Shorts" class="pi-img" loading="lazy" />
+          <div class="pi-quick-view"><span>Quick View</span></div>
+        </div>
+        <div class="pi-info">
+          <div class="pi-rating">
+            <div class="pi-stars">★★★★<span class="pi-star-empty">★</span></div>
+            <span class="pi-reviews">(31)</span>
+          </div>
+          <h3 class="pi-title">Athletic Fleece Shorts</h3>
+          <p class="pi-category">Shorts</p>
+          <div class="pi-price-row">
+            <div class="pi-price">₹849</div>
+          </div>
+        </div>
+      </a>
+
+      <!-- JACKETS -->
+      <a href="/product.html?id=7" class="product-item" data-category="jackets" data-price="2499" data-rating="4.7">
+        <div class="pi-image-wrapper">
+          <span class="pi-badge pi-badge-new">LIMITED</span>
+          <img src="/assets/photo/ethos-bg-rs.png" alt="Heavyweight Bomber Jacket" class="pi-img" loading="lazy" />
+          <div class="pi-quick-view"><span>Quick View</span></div>
+        </div>
+        <div class="pi-info">
+          <div class="pi-rating">
+            <div class="pi-stars">★★★★★</div>
+            <span class="pi-reviews">(18)</span>
+          </div>
+          <h3 class="pi-title">Heavyweight Bomber Jacket</h3>
+          <p class="pi-category">Jackets</p>
+          <div class="pi-price-row">
+            <div class="pi-price">₹2,499</div>
+            <div class="pi-old-price">₹3,299</div>
+            <span class="pi-discount">24% OFF</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="/product.html?id=8" class="product-item" data-category="jackets" data-price="1999" data-rating="4.5">
+        <div class="pi-image-wrapper">
+          <img src="/assets/photo/z1.png" alt="Street Windbreaker" class="pi-img" loading="lazy" />
+          <div class="pi-quick-view"><span>Quick View</span></div>
+        </div>
+        <div class="pi-info">
+          <div class="pi-rating">
+            <div class="pi-stars">★★★★<span class="pi-star-empty">★</span></div>
+            <span class="pi-reviews">(27)</span>
+          </div>
+          <h3 class="pi-title">Street Windbreaker</h3>
+          <p class="pi-category">Jackets</p>
+          <div class="pi-price-row">
+            <div class="pi-price">₹1,999</div>
+          </div>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- EMPTY STATE -->
+    <div class="col-empty-state" id="col-empty-state" style="display:none;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      <p>No products found in this category yet.</p>
+      <button onclick="document.querySelector('[data-filter=all]').click()">View All</button>
     </div>
   </main>
 
@@ -159,44 +244,81 @@
 
   <script type="module" src="./main.js"></script>
   <script>
-    // Update title from query param
     const urlParams = new URLSearchParams(window.location.search);
-    const category = urlParams.get('category');
-    if (category) {
-      document.getElementById('page-collection-title').textContent =
-        category.charAt(0).toUpperCase() + category.slice(1);
+    const categoryParam = (urlParams.get('category') || '').toLowerCase().trim();
+
+    const pills  = document.querySelectorAll('.cph-pill');
+    const grid   = document.getElementById('products-grid');
+    const countEl = document.getElementById('page-collection-count');
+    const titleEl = document.getElementById('page-collection-title');
+    const emptyEl = document.getElementById('col-empty-state');
+    const sortSel = document.getElementById('cph-sort');
+
+    // Map param → display title
+    const titleMap = { all:'All Products', hoodies:'Hoodies', tees:'Tees', shorts:'Shorts', jackets:'Jackets' };
+
+    let activeFilter = 'all';
+
+    function getItems() {
+      return [...document.querySelectorAll('.product-item')];
     }
 
-    // Filter pills
-    const pills = document.querySelectorAll('.cph-pill');
-    const items = document.querySelectorAll('.product-item');
-    pills.forEach(pill => {
-      pill.addEventListener('click', () => {
-        pills.forEach(p => p.classList.remove('active'));
-        pill.classList.add('active');
-        const filter = pill.dataset.filter;
-        items.forEach(item => {
-          if (filter === 'all' || item.dataset.category === filter) {
-            item.style.display = '';
-          } else {
-            item.style.display = 'none';
-          }
+    function applyFilter(filter) {
+      activeFilter = filter;
+      pills.forEach(p => p.classList.toggle('active', p.dataset.filter === filter));
+      titleEl.textContent = titleMap[filter] || filter.charAt(0).toUpperCase() + filter.slice(1);
+      document.getElementById('page-title').textContent = `Inklayer — ${titleEl.textContent}`;
+      applySortAndFilter();
+    }
+
+    function applySortAndFilter() {
+      const items = getItems();
+      // filter
+      let visible = items.filter(item => {
+        const show = activeFilter === 'all' || item.dataset.category === activeFilter;
+        item.style.display = show ? '' : 'none';
+        return show;
+      });
+
+      // sort
+      const sortVal = sortSel.value;
+      if (sortVal !== 'default') {
+        visible.sort((a, b) => {
+          if (sortVal === 'price-asc')  return Number(a.dataset.price) - Number(b.dataset.price);
+          if (sortVal === 'price-desc') return Number(b.dataset.price) - Number(a.dataset.price);
+          if (sortVal === 'rating')     return Number(b.dataset.rating) - Number(a.dataset.rating);
+          return 0;
         });
-        // Update count
-        const visible = [...items].filter(i => i.style.display !== 'none').length;
-        document.getElementById('page-collection-count').textContent = visible;
+        // re-append in sorted order (only visible ones move)
+        visible.forEach(item => grid.appendChild(item));
+      }
+
+      countEl.textContent = visible.length;
+      emptyEl.style.display = visible.length === 0 ? 'flex' : 'none';
+    }
+
+    // Pill clicks
+    pills.forEach(pill => {
+      pill.addEventListener('click', () => applyFilter(pill.dataset.filter));
+    });
+
+    // Sort change
+    sortSel.addEventListener('change', applySortAndFilter);
+
+    // Quick view
+    document.querySelectorAll('.pi-quick-view').forEach(qv => {
+      qv.addEventListener('click', e => {
+        e.preventDefault(); e.stopPropagation();
+        window.location.href = qv.closest('.product-item').href;
       });
     });
 
-    // Quick view — prevent link navigation
-    document.querySelectorAll('.pi-quick-view').forEach(qv => {
-      qv.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        const href = qv.closest('.product-item').href;
-        window.location.href = href;
-      });
-    });
+    // Auto-activate from URL param on load
+    if (categoryParam && titleMap[categoryParam]) {
+      applyFilter(categoryParam);
+    } else {
+      applySortAndFilter();
+    }
   </script>
 </body>
 </html>

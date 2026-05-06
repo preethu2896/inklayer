@@ -17,6 +17,57 @@
 
 <body>
 
+  <!-- FLOATING ICON BAR -->
+  <div class="pd-icon-bar">
+    <button class="pd-icon-btn" id="pd-wishlist-icon" aria-label="Wishlist">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+      </svg>
+      <span class="pd-icon-count" id="wishlist-count" style="display:none;">0</span>
+    </button>
+    <button class="pd-icon-btn" id="pd-cart-icon" aria-label="Cart">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <path d="M16 10a4 4 0 0 1-8 0"></path>
+      </svg>
+      <span class="pd-icon-count" id="cart-count" style="display:none;">0</span>
+    </button>
+  </div>
+
+  <!-- CART PANEL -->
+  <div class="pd-panel-overlay" id="cart-overlay"></div>
+  <aside class="pd-panel" id="cart-panel">
+    <div class="pd-panel-header">
+      <h3>Your Cart</h3>
+      <button class="pd-panel-close" id="cart-close">✕</button>
+    </div>
+    <div class="pd-panel-items" id="cart-items">
+      <div class="pd-panel-empty" id="cart-empty">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <p>Your cart is empty</p>
+      </div>
+    </div>
+    <div class="pd-panel-footer" id="cart-footer" style="display:none;">
+      <div class="pd-panel-total">Total: <span id="cart-total">₹0</span></div>
+      <a href="/checkout.html" class="pd-panel-cta">Proceed to Checkout</a>
+    </div>
+  </aside>
+
+  <!-- WISHLIST PANEL -->
+  <div class="pd-panel-overlay" id="wishlist-overlay"></div>
+  <aside class="pd-panel" id="wishlist-panel">
+    <div class="pd-panel-header">
+      <h3>Wishlist</h3>
+      <button class="pd-panel-close" id="wishlist-close">✕</button>
+    </div>
+    <div class="pd-panel-items" id="wishlist-items">
+      <div class="pd-panel-empty" id="wishlist-empty">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <p>Your wishlist is empty</p>
+      </div>
+    </div>
+  </aside>
 
   <!-- BREADCRUMB -->
   <div class="breadcrumb">
@@ -434,13 +485,159 @@
       });
     });
 
-    // Wishlist toggle
+    // ── CART & WISHLIST PANEL SYSTEM ──
+    const PRODUCT = {
+      name: 'Premium Heavyweight Hoodie',
+      price: 1499,
+      img: '/assets/photo/bg1.png'
+    };
+
+    let cartItems = [];
+    let wishlistItems = [];
+
+    function openPanel(panelId, overlayId) {
+      document.getElementById(panelId).classList.add('open');
+      document.getElementById(overlayId).classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closePanel(panelId, overlayId) {
+      document.getElementById(panelId).classList.remove('open');
+      document.getElementById(overlayId).classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // Open / close cart
+    document.getElementById('pd-cart-icon').addEventListener('click', () => openPanel('cart-panel', 'cart-overlay'));
+    document.getElementById('cart-close').addEventListener('click', () => closePanel('cart-panel', 'cart-overlay'));
+    document.getElementById('cart-overlay').addEventListener('click', () => closePanel('cart-panel', 'cart-overlay'));
+
+    // Open / close wishlist
+    document.getElementById('pd-wishlist-icon').addEventListener('click', () => openPanel('wishlist-panel', 'wishlist-overlay'));
+    document.getElementById('wishlist-close').addEventListener('click', () => closePanel('wishlist-panel', 'wishlist-overlay'));
+    document.getElementById('wishlist-overlay').addEventListener('click', () => closePanel('wishlist-panel', 'wishlist-overlay'));
+
+    function renderCartItem(item) {
+      return `<div class="pd-panel-item" data-id="${item.id}">
+        <img src="${item.img}" alt="${item.name}" class="pd-pi-img" />
+        <div class="pd-pi-info">
+          <div class="pd-pi-name">${item.name}</div>
+          <div class="pd-pi-meta">${item.color} / ${item.size} × ${item.qty}</div>
+          <div class="pd-pi-price">₹${(item.price * item.qty).toLocaleString('en-IN')}</div>
+        </div>
+        <button class="pd-pi-remove" onclick="removeFromCart('${item.id}')">✕</button>
+      </div>`;
+    }
+
+    function renderWishlistItem(item) {
+      return `<div class="pd-panel-item" data-id="${item.id}">
+        <img src="${item.img}" alt="${item.name}" class="pd-pi-img" />
+        <div class="pd-pi-info">
+          <div class="pd-pi-name">${item.name}</div>
+          <div class="pd-pi-price">₹${item.price.toLocaleString('en-IN')}</div>
+        </div>
+        <button class="pd-pi-remove" onclick="removeFromWishlist('${item.id}')">✕</button>
+      </div>`;
+    }
+
+    function updateCartUI() {
+      const countEl = document.getElementById('cart-count');
+      const itemsEl = document.getElementById('cart-items');
+      const emptyEl = document.getElementById('cart-empty');
+      const footerEl = document.getElementById('cart-footer');
+      const totalEl = document.getElementById('cart-total');
+
+      countEl.textContent = cartItems.reduce((s, i) => s + i.qty, 0);
+      countEl.style.display = cartItems.length ? '' : 'none';
+
+      if (cartItems.length === 0) {
+        emptyEl.style.display = 'flex';
+        footerEl.style.display = 'none';
+      } else {
+        emptyEl.style.display = 'none';
+        footerEl.style.display = 'block';
+        const existingItems = itemsEl.querySelectorAll('.pd-panel-item');
+        existingItems.forEach(el => el.remove());
+        cartItems.forEach(item => {
+          itemsEl.insertAdjacentHTML('beforeend', renderCartItem(item));
+        });
+        const total = cartItems.reduce((s, i) => s + i.price * i.qty, 0);
+        totalEl.textContent = '₹' + total.toLocaleString('en-IN');
+      }
+    }
+
+    function updateWishlistUI() {
+      const countEl = document.getElementById('wishlist-count');
+      const itemsEl = document.getElementById('wishlist-items');
+      const emptyEl = document.getElementById('wishlist-empty');
+
+      countEl.textContent = wishlistItems.length;
+      countEl.style.display = wishlistItems.length ? '' : 'none';
+
+      if (wishlistItems.length === 0) {
+        emptyEl.style.display = 'flex';
+      } else {
+        emptyEl.style.display = 'none';
+        const existingItems = itemsEl.querySelectorAll('.pd-panel-item');
+        existingItems.forEach(el => el.remove());
+        wishlistItems.forEach(item => {
+          itemsEl.insertAdjacentHTML('beforeend', renderWishlistItem(item));
+        });
+      }
+    }
+
+    window.removeFromCart = function(id) {
+      cartItems = cartItems.filter(i => i.id !== id);
+      updateCartUI();
+    };
+    window.removeFromWishlist = function(id) {
+      wishlistItems = wishlistItems.filter(i => i.id !== id);
+      const wishlistBtn2 = document.getElementById('pm-wishlist-btn');
+      if (wishlistBtn2) wishlistBtn2.classList.remove('wishlisted');
+      updateWishlistUI();
+    };
+
+    // Add to Cart buttons
+    document.querySelectorAll('.pm-add-to-cart').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = `${selectedColor}-${selectedSize}`;
+        const existing = cartItems.find(i => i.id === id);
+        if (existing) {
+          existing.qty += parseInt(document.getElementById('qty-val').textContent) || 1;
+        } else {
+          cartItems.push({
+            id,
+            name: PRODUCT.name,
+            price: PRODUCT.price,
+            img: PRODUCT.img,
+            color: selectedColor,
+            size: selectedSize,
+            qty: parseInt(document.getElementById('qty-val').textContent) || 1
+          });
+        }
+        updateCartUI();
+        openPanel('cart-panel', 'cart-overlay');
+        // Flash animation on icon
+        const icon = document.getElementById('pd-cart-icon');
+        icon.classList.add('pd-icon-pulse');
+        setTimeout(() => icon.classList.remove('pd-icon-pulse'), 600);
+      });
+    });
+
+    // Wishlist btn (in product info)
     const wishlistBtn = document.getElementById('pm-wishlist-btn');
     if (wishlistBtn) {
       wishlistBtn.addEventListener('click', () => {
-        wishlistBtn.classList.toggle('wishlisted');
-        const isWishlisted = wishlistBtn.classList.contains('wishlisted');
+        const isWishlisted = wishlistBtn.classList.toggle('wishlisted');
+        if (isWishlisted) {
+          wishlistItems.push({ id: 'wish-1', name: PRODUCT.name, price: PRODUCT.price, img: PRODUCT.img });
+          const icon = document.getElementById('pd-wishlist-icon');
+          icon.classList.add('pd-icon-pulse');
+          setTimeout(() => icon.classList.remove('pd-icon-pulse'), 600);
+        } else {
+          wishlistItems = wishlistItems.filter(i => i.id !== 'wish-1');
+        }
         wishlistBtn.setAttribute('aria-label', isWishlisted ? 'Remove from wishlist' : 'Add to wishlist');
+        updateWishlistUI();
       });
     }
 
@@ -458,5 +655,6 @@
       observer.observe(pmButtons);
     }
   </script>
+
 </body>
 </html>

@@ -85,65 +85,8 @@ body {
 }
 .cph-sort-select option { background: #1a1a1a; color: #fff; }
 
-/* BACK BUTTON */
-.cph-back-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  background: rgba(255, 255, 255, 0.04);
-  color: var(--text-color, #ffffff);
-  cursor: pointer;
-  flex-shrink: 0;
-  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  backdrop-filter: blur(10px);
-}
+/* Remove old filter btn — pills replace it */
 
-.cph-back-btn:hover {
-  background: var(--primary-color, #F4622A);
-  border-color: var(--primary-color, #F4622A);
-  transform: translateX(-3px);
-  box-shadow: 0 8px 20px rgba(244, 98, 42, 0.25);
-}
-
-.cph-back-btn svg {
-  width: 20px;
-  height: 20px;
-}
-
-.cph-filter-btn {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px 24px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 4px;
-  background: rgba(255, 255, 255, 0.03);
-  color: var(--text-color, #ffffff);
-  cursor: pointer;
-  font-family: var(--font-sans, 'DM Sans', sans-serif);
-  font-size: 0.9rem;
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  backdrop-filter: blur(10px);
-}
-
-.cph-filter-btn:hover {
-  background: var(--primary-color, #F4622A);
-  border-color: var(--primary-color, #F4622A);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(244, 98, 42, 0.2);
-}
-
-.cph-filter-btn svg {
-  width: 18px;
-  height: 18px;
-}
 
 /* FILTER PILLS */
 .cph-filter-pills {
@@ -342,6 +285,97 @@ body {
   margin-top: 8px;
 }
 
+/* BACK BUTTON */
+.cph-back-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-color, #ffffff);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  backdrop-filter: blur(10px);
+}
+.cph-back-btn:hover {
+  background: var(--primary-color, #F4622A);
+  border-color: var(--primary-color, #F4622A);
+  transform: translateX(-3px);
+  box-shadow: 0 8px 20px rgba(244, 98, 42, 0.25);
+}
+.cph-back-btn svg { width: 20px; height: 20px; }
+
+/* PRICE ROW */
+.pi-price-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+  flex-wrap: wrap;
+}
+
+.pi-old-price {
+  font-family: var(--font-sans, 'DM Sans', sans-serif);
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.3);
+  text-decoration: line-through;
+}
+
+.pi-discount {
+  font-family: var(--font-sans, 'DM Sans', sans-serif);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #00e676;
+  background: rgba(0, 230, 118, 0.1);
+  padding: 2px 7px;
+  border-radius: 4px;
+  letter-spacing: 0.04em;
+}
+
+/* BADGE VARIANTS */
+.pi-badge-new {
+  background: #1a1aff;
+  color: #fff;
+}
+.pi-badge-top {
+  background: #ff9800;
+  color: #000;
+}
+
+/* EMPTY STATE */
+.col-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 80px 20px;
+  color: rgba(255,255,255,0.25);
+  text-align: center;
+}
+.col-empty-state svg { width: 60px; height: 60px; }
+.col-empty-state p { font-size: 1.1rem; font-family: var(--font-sans, 'DM Sans', sans-serif); }
+.col-empty-state button {
+  padding: 12px 28px;
+  background: var(--primary-color, #F4622A);
+  color: #000;
+  border-radius: 6px;
+  font-family: var(--font-sans, 'DM Sans', sans-serif);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* Title block */
+.cph-title-block {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
 @media (max-width: 768px) {
   .collection-page-header {
     flex-direction: column;
@@ -349,7 +383,7 @@ body {
     gap: 24px;
     padding: 40px 5% 40px;
   }
-  
+
   .products-grid {
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 24px;
@@ -361,6 +395,8 @@ body {
     padding: 32px 5% 32px;
   }
   .products-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
   }
+  .pi-info { padding: 16px; }
 }
