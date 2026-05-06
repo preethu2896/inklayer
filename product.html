@@ -382,22 +382,7 @@
     </div>
   </footer>
 
-  <!-- STICKY CTA -->
-  <div class="sticky-cta-bar" id="sticky-cta">
-    <div class="sticky-cta-inner">
-      <div class="sticky-cta-info">
-        <img src="/assets/photo/bg1.png" alt="Premium Heavyweight Hoodie" class="sticky-cta-img" />
-        <div class="sticky-cta-text">
-          <h4 class="sticky-cta-title">Premium Heavyweight Hoodie</h4>
-          <span class="sticky-cta-price">₹1499.00</span>
-        </div>
-      </div>
-      <div class="sticky-cta-buttons">
-        <button class="pm-add-to-cart">Add to Cart</button>
-        <button class="pm-buy-now">Buy Now</button>
-      </div>
-    </div>
-  </div>
+
 
   <!-- Scripts for interactivity -->
   <script type="module" src="./main.js"></script>
@@ -641,19 +626,7 @@
       });
     }
 
-    // Sticky CTA Visibility
-    const stickyCta = document.getElementById('sticky-cta');
-    const pmButtons = document.querySelector('.pm-buttons');
-    if (stickyCta && pmButtons) {
-      const observer = new IntersectionObserver((entries) => {
-        if (!entries[0].isIntersecting) {
-          stickyCta.classList.add('visible');
-        } else {
-          stickyCta.classList.remove('visible');
-        }
-      }, { threshold: 0, rootMargin: "-100px 0px 0px 0px" });
-      observer.observe(pmButtons);
-    }
+
   </script>
 
 </body>

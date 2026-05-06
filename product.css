@@ -37,7 +37,6 @@ body {
   background: var(--primary-color, #F4622A);
   border-color: var(--primary-color, #F4622A);
   color: #000;
-  transform: scale(1.08);
   box-shadow: 0 8px 24px rgba(244, 98, 42, 0.35);
 }
 
