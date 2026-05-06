@@ -6,7 +6,7 @@ body {
 }
 
 .collection-page-header {
-  padding: calc(var(--nav-height) + 60px) 5% 60px;
+  padding: 60px 5% 60px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -55,6 +55,35 @@ body {
 
 .cph-right {
   z-index: 1;
+}
+
+/* BACK BUTTON */
+.cph-back-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-color, #ffffff);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  backdrop-filter: blur(10px);
+}
+
+.cph-back-btn:hover {
+  background: var(--primary-color, #F4622A);
+  border-color: var(--primary-color, #F4622A);
+  transform: translateX(-3px);
+  box-shadow: 0 8px 20px rgba(244, 98, 42, 0.25);
+}
+
+.cph-back-btn svg {
+  width: 20px;
+  height: 20px;
 }
 
 .cph-filter-btn {
@@ -221,7 +250,7 @@ body {
     flex-direction: column;
     align-items: flex-start;
     gap: 24px;
-    padding: calc(var(--nav-height-mobile) + 50px) 5% 40px;
+    padding: 40px 5% 40px;
   }
   
   .products-grid {
@@ -232,7 +261,7 @@ body {
 
 @media (max-width: 480px) {
   .collection-page-header {
-    padding: calc(var(--nav-height-mobile) + 36px) 5% 32px;
+    padding: 32px 5% 32px;
   }
   .products-grid {
     grid-template-columns: 1fr;
